@@ -16,7 +16,8 @@ import type {
 import type * as CustomProfile from "../CustomProfile.js";
 import type * as auth from "../auth.js";
 import type * as http from "../http.js";
-import type * as schems from "../schems.js";
+import type * as jobs from "../jobs.js";
+import type * as seed from "../seed.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -30,7 +31,8 @@ declare const fullApi: ApiFromModules<{
   CustomProfile: typeof CustomProfile;
   auth: typeof auth;
   http: typeof http;
-  schems: typeof schems;
+  jobs: typeof jobs;
+  seed: typeof seed;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

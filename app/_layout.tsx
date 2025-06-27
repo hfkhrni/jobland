@@ -5,20 +5,21 @@ import {
   Theme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { ConvexReactClient } from "convex/react";
+import { ConvexReactClient, useConvexAuth } from "convex/react";
 import { Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { StatusBar } from "expo-status-bar";
 import { Platform } from "react-native";
 import "react-native-reanimated";
 
-import { Text, View } from "react-native";
 // import { useColorScheme } from "~/hooks/useColorScheme";
 import "../global.css";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NAV_THEME } from "~/lib/constants";
 import { useColorScheme } from "~/lib/useColorScheme";
+
+import Toast from "react-native-toast-message";
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -35,6 +36,48 @@ export {
 } from "expo-router";
 
 export default function RootLayout() {
+  // const { isAuthenticated, isLoading } = useConvexAuth();
+
+  // const token = useAuthToken();
+
+  const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
+    unsavedChangesWarning: false,
+  });
+
+  const secureStorage = {
+    getItem: SecureStore.getItemAsync,
+    setItem: SecureStore.setItemAsync,
+    removeItem: SecureStore.deleteItemAsync,
+  };
+
+  return (
+    <ConvexAuthProvider
+      client={convex}
+      storage={
+        Platform.OS === "android" || Platform.OS === "ios"
+          ? secureStorage
+          : undefined
+      }
+    >
+      {/* <View className="flex-1 items-center justify-center bg-white">
+          <Text className="text-xl font-bold text-red-500">
+            Welcome to Nativewind!
+          </Text>
+        </View> */}
+      <RootNavigator />
+      <Toast />
+    </ConvexAuthProvider>
+  );
+}
+
+const useIsomorphicLayoutEffect =
+  Platform.OS === "web" && typeof window === "undefined"
+    ? useEffect
+    : useLayoutEffect;
+
+function RootNavigator() {
+  const { isAuthenticated, isLoading } = useConvexAuth();
+
   const hasMounted = useRef(false);
 
   const { colorScheme, isDarkColorScheme } = useColorScheme();
@@ -66,42 +109,24 @@ export default function RootLayout() {
     return null;
   }
 
-  const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
-    unsavedChangesWarning: false,
-  });
-
-  const secureStorage = {
-    getItem: SecureStore.getItemAsync,
-    setItem: SecureStore.setItemAsync,
-    removeItem: SecureStore.deleteItemAsync,
-  };
-
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <ConvexAuthProvider
-        client={convex}
-        storage={
-          Platform.OS === "android" || Platform.OS === "ios"
-            ? secureStorage
-            : undefined
-        }
-      >
-        <View className="flex-1 items-center justify-center bg-white">
-          <Text className="text-xl font-bold text-red-500">
-            Welcome to Nativewind!
-          </Text>
-        </View>
-        <Stack>
+      <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+      <Stack>
+        {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
+        <Stack.Protected guard={isAuthenticated}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-      </ConvexAuthProvider>
+        </Stack.Protected>
+
+        <Stack.Protected guard={!isAuthenticated}>
+          <Stack.Screen
+            name="(auth)/sign-in"
+            options={{ headerShown: false }}
+          />
+        </Stack.Protected>
+
+        <Stack.Screen name="+not-found" />
+      </Stack>
     </ThemeProvider>
   );
 }
-
-const useIsomorphicLayoutEffect =
-  Platform.OS === "web" && typeof window === "undefined"
-    ? useEffect
-    : useLayoutEffect;
