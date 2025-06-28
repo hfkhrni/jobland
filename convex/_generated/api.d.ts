@@ -15,6 +15,8 @@ import type {
 } from "convex/server";
 import type * as CustomProfile from "../CustomProfile.js";
 import type * as auth from "../auth.js";
+import type * as complaints from "../complaints.js";
+import type * as files from "../files.js";
 import type * as http from "../http.js";
 import type * as industries from "../industries.js";
 import type * as jobs from "../jobs.js";
@@ -31,6 +33,8 @@ import type * as seed from "../seed.js";
 declare const fullApi: ApiFromModules<{
   CustomProfile: typeof CustomProfile;
   auth: typeof auth;
+  complaints: typeof complaints;
+  files: typeof files;
   http: typeof http;
   industries: typeof industries;
   jobs: typeof jobs;

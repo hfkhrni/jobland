@@ -56,7 +56,7 @@ export default function HomeScreen() {
         headerBackground={require("~/assets/images/image.png")}
         headerOverlay={
           <View style={{ padding: 16 }}>
-            <Button>
+            <Button onPress={() => router.push("/(complaint)/")}>
               <Text>Submit a complaint</Text>
             </Button>
           </View>

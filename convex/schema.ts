@@ -70,17 +70,43 @@ const schema = defineSchema({
     .index("createdAt", ["createdAt"]),
 
   complaints: defineTable({
-    title: v.string(),
-    description: v.string(),
-    reportedBy: v.id("users"),
-    targetType: v.string(), // "user", "company", "job", "post"
-    targetId: v.string(), // ID of the reported entity
+    // Personal Information
+    fullName: v.string(),
+    email: v.string(),
+    phoneNumber: v.string(),
+
+    // Company Information
+    employerDetails: v.string(), // role/position
+    companyName: v.string(),
+    companyAddress: v.string(),
+    companyContact: v.optional(v.string()),
+
+    // Complaint Details
+    complaintDescription: v.string(),
+    evidenceDescription: v.string(),
+
+    // File attachments (stored as array of file info)
+    attachments: v.optional(
+      v.array(
+        v.object({
+          id: v.string(),
+          name: v.string(),
+          type: v.string(), // "image" or "document"
+          storageId: v.id("_storage"), // Convex file storage ID
+          size: v.optional(v.number()),
+        })
+      )
+    ),
+
+    // Status tracking
     status: v.string(), // "pending", "investigating", "resolved", "dismissed"
-    // priority: v.string(), // "low", "medium", "high", "critical"
+    priority: v.optional(v.string()), // "low", "medium", "high", "critical"
     assignedTo: v.optional(v.id("users")), // Admin/moderator
-    // createdAt: v.number(),
-    // updatedAt: v.number(),
     resolution: v.optional(v.string()),
+
+    // Metadata
+    reportedBy: v.optional(v.id("users")), // if user is logged in
+    submittedAt: v.number(),
   })
     .index("reportedBy", ["reportedBy"])
     .index("status", ["status"])
