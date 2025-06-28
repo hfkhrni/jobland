@@ -10,8 +10,8 @@ import { Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { StatusBar } from "expo-status-bar";
 import { Platform } from "react-native";
+import "react-native-gesture-handler";
 import "react-native-reanimated";
-
 // import { useColorScheme } from "~/hooks/useColorScheme";
 import "../global.css";
 

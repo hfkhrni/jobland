@@ -1,6 +1,56 @@
 // convex/seed.ts
+import { v } from "convex/values";
 import { internal } from "./_generated/api"; // Add this import
-import { internalMutation, type MutationCtx } from "./_generated/server";
+import {
+  action,
+  internalMutation,
+  type MutationCtx,
+} from "./_generated/server";
+
+const SVG_LOGOS = [
+  `<svg width="49" height="40" viewBox="0 0 49 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24.9727 0L29.687 3.92858L25.6129 7.32367C25.2421 7.63271 24.7034 7.63271 24.3325 7.32367L20.2585 3.92858L24.9727 0Z" fill="#00067F"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24.3325 11.3545C24.7034 11.6635 25.2421 11.6635 25.6129 11.3545L32.1054 5.94397L35.8399 9.05606L27.5335 15.9782C26.0501 17.2143 23.8954 17.2143 22.412 15.9782L14.1055 9.05606L17.84 5.94397L24.3325 11.3545Z" fill="#00067F"></path>
+<path d="M24.9727 40L20.2585 36.0714L24.3325 32.6763C24.7034 32.3673 25.2421 32.3673 25.6129 32.6763L29.687 36.0714L24.9727 40Z" fill="#00067F"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M25.6129 28.6455C25.2421 28.3365 24.7034 28.3365 24.3325 28.6455L17.84 34.056L14.1055 30.9439L22.412 24.0218C23.8954 22.7857 26.0501 22.7857 27.5335 24.0218L35.8399 30.9439L32.1054 34.056L25.6129 28.6455Z" fill="#00067F"></path>
+<path d="M48.9727 20L44.2584 16.0714L40.466 19.2318C39.9862 19.6316 39.9862 20.3684 40.466 20.7682L44.2584 23.9286L48.9727 20Z" fill="#00067F"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M35.6291 20.7682C35.1493 20.3684 35.1493 19.6316 35.6291 19.2318L41.8399 14.056L38.1054 10.9439L30.9257 16.9271C29.0067 18.5263 29.0067 21.4737 30.9257 23.0729L38.1054 29.0561L41.8399 25.944L35.6291 20.7682Z" fill="#00067F"></path>
+<path d="M0.972656 20.0001L5.68692 23.9287L9.47933 20.7683C9.95909 20.3685 9.95909 19.6317 9.47933 19.2319L5.68692 16.0715L0.972656 20.0001Z" fill="#00067F"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.3162 19.2319C14.796 19.6317 14.796 20.3685 14.3163 20.7683L8.10538 25.9441L11.8399 29.0562L19.0196 23.073C20.9386 21.4738 20.9386 18.5264 19.0196 16.9272L11.8399 10.944L8.10538 14.0561L14.3162 19.2319Z" fill="#00067F"></path>
+</svg>`,
+  `<svg width="51" height="40" viewBox="0 0 51 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.446 0L22.7801 8.82887C23.3936 9.35302 23.7473 10.1222 23.7473 10.9323V17.5862L13.4131 8.75734C12.7996 8.23319 12.446 7.464 12.446 6.65386V0Z" fill="#7B19D8"></path>
+<path d="M12.446 40L22.7801 31.1711C23.3936 30.647 23.7473 29.8778 23.7473 29.0677V22.4138L13.4131 31.2427C12.7996 31.7668 12.446 32.536 12.446 33.3461V40Z" fill="#7B19D8"></path>
+<path d="M0.117188 9.31034L10.3108 17.9705C10.805 18.3904 11.4308 18.6207 12.0775 18.6207H20.2982L10.1297 9.96253C9.63514 9.54141 9.00837 9.31034 8.36065 9.31034H0.117188Z" fill="#7B19D8"></path>
+<path d="M0.117188 30.6897L10.2481 22.0345C10.7432 21.6115 11.3713 21.3793 12.0206 21.3793H20.3227L10.1291 30.0394C9.63487 30.4593 9.00904 30.6897 8.36236 30.6897H0.117188Z" fill="#7B19D8"></path>
+<path d="M37.7884 0L27.4542 8.82887C26.8407 9.35302 26.4871 10.1222 26.4871 10.9323V17.5862L36.8212 8.75734C37.4347 8.23319 37.7884 7.464 37.7884 6.65386V0Z" fill="#7B19D8"></path>
+<path d="M37.7884 40L27.4542 31.1711C26.8407 30.647 26.4871 29.8778 26.4871 29.0677V22.4138L36.8212 31.2427C37.4347 31.7668 37.7884 32.536 37.7884 33.3461V40Z" fill="#7B19D8"></path>
+<path d="M50.1172 9.31034L39.9236 17.9705C39.4294 18.3904 38.8035 18.6207 38.1569 18.6207H29.9361L40.1047 9.96253C40.5992 9.54141 41.226 9.31034 41.8737 9.31034H50.1172Z" fill="#7B19D8"></path>
+<path d="M50.1172 30.6897L39.9863 22.0345C39.4912 21.6115 38.863 21.3793 38.2137 21.3793H29.9117L40.1052 30.0394C40.5995 30.4593 41.2253 30.6897 41.872 30.6897H50.1172Z" fill="#7B19D8"></path>
+</svg>`,
+  `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.343 2.65705L20 0L40 20L20 40L17.3429 37.3429L34.6859 20L17.343 2.65705Z" fill="#D41C1C"></path>
+<path d="M13.8744 6.12564L16.5314 3.46859L33.0628 20L16.5314 36.5314L13.8744 33.8744L27.7487 20L13.8744 6.12564Z" fill="#D41C1C"></path>
+<path d="M0 20L13.0628 6.93718L26.1256 20L13.0628 33.0628L10.4058 30.4058L20.8115 20L13.0628 12.2513L2.65705 22.657L0 20Z" fill="#D41C1C"></path>
+<path d="M13.0628 13.8744L10.4058 16.5314L13.8744 20L6.93718 26.9372L9.59422 29.5942L19.1885 20L13.0628 13.8744Z" fill="#D41C1C"></path>
+<path d="M6.12564 26.1256L3.46859 23.4686L9.56643 17.3708L12.2235 20.0278L6.12564 26.1256Z" fill="#D41C1C"></path>
+</svg>`,
+  `<svg width="36" height="41" viewBox="0 0 36 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.88822 2.95639V0.521606H0.322998V2.95639V8.17378V17.2173V22.7825V22.9564C0.322998 32.6574 8.18721 40.5216 17.8882 40.5216C27.5892 40.5216 35.4534 32.6574 35.4534 22.9564V22.7825V17.2173V8.17378V2.95639V0.521606H29.8882V2.95639H20.4969V2.60856V0.521606H14.9317V2.60856V2.95639H5.88822ZM14.9317 34.5894C9.78296 33.2849 5.96086 28.652 5.88924 23.1147C6.48236 23.2584 7.06484 23.4481 7.63125 23.6827C9.06606 24.277 10.3698 25.1481 11.4679 26.2463C12.5661 27.3444 13.4372 28.6481 14.0315 30.0829C14.6234 31.5118 14.9292 33.0429 14.9317 34.5894ZM15.4031 22.3111C16.2746 23.1825 17.0488 24.142 17.7143 25.1723C18.3798 24.142 19.154 23.1825 20.0255 22.3111C20.8969 21.4396 21.8564 20.6654 22.8867 19.9999C21.8564 19.3344 20.8969 18.5601 20.0255 17.6887C19.154 16.8172 18.3798 15.8578 17.7143 14.8275C17.0488 15.8578 16.2746 16.8172 15.4031 17.6887C14.5317 18.5601 13.5722 19.3344 12.5419 19.9999C13.5722 20.6654 14.5317 21.4396 15.4031 22.3111ZM29.888 23.0359C29.851 28.7322 25.8451 33.4865 20.4969 34.672V34.6086C20.4969 33.0555 20.8028 31.5177 21.3971 30.0829C21.9914 28.6481 22.8625 27.3444 23.9607 26.2463C25.0588 25.1481 26.3625 24.277 27.7974 23.6827C28.4744 23.4023 29.1743 23.186 29.888 23.0359ZM14.5098 8.52161C14.3799 8.99519 14.2202 9.4612 14.0315 9.91682C13.4372 11.3516 12.5661 12.6553 11.4679 13.7535C10.3698 14.8516 9.06606 15.7227 7.63125 16.3171C7.06451 16.5518 6.48169 16.7416 5.88822 16.8852V8.52161H14.5098ZM29.8882 16.9639V8.52161H20.9188C21.0488 8.99519 21.2084 9.4612 21.3971 9.91682C21.9914 11.3516 22.8625 12.6553 23.9607 13.7535C25.0588 14.8516 26.3625 15.7227 27.7974 16.3171C28.4744 16.5975 29.1745 16.8137 29.8882 16.9639Z" fill="#09C382"></path>
+</svg>`,
+  `<svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M29.4554 2.43478V0H35V22.4348C35 32.1358 27.165 40 17.5 40C8.24271 40 0.664262 32.7853 0.0413736 23.6522H0V0H5.54455V2.43478L14.901 2.43478V0H20.4455V2.43478L29.4554 2.43478ZM29.4554 22.4348V19.0202C28.8318 19.6656 28.1633 20.2785 27.4539 20.8558C25.1121 22.7615 22.3612 24.2503 19.369 25.2589C16.3764 26.2677 13.1833 26.7826 9.96797 26.7826H6.35343C8.08848 31.2608 12.425 34.4348 17.5 34.4348C24.1028 34.4348 29.4554 29.0622 29.4554 22.4348ZM15.4269 18.2435C14.3706 19.3674 13.18 20.3419 11.8852 21.1425C13.8545 20.9882 15.7827 20.5971 17.6038 19.9833C20.013 19.1712 22.1698 17.9913 23.9621 16.5329C25.7535 15.075 27.136 13.3757 28.0645 11.5515C28.6507 10.3998 29.0518 9.20727 29.2674 8H20.2671C20.0641 9.47968 19.6891 10.9319 19.1475 12.3231C18.2893 14.5274 17.0275 16.5405 15.4269 18.2435ZM5.54455 17.8146V8H14.6483C14.4948 8.78546 14.2724 9.55482 13.9832 10.2975C13.3786 11.8506 12.4962 13.2517 11.3938 14.4246C10.2918 15.5971 8.99228 16.518 7.57404 17.143C6.91535 17.4333 6.23601 17.6576 5.54455 17.8146Z" fill="#1D3AA7"></path>
+</svg>`,
+];
+
+// Helper function to create blob from SVG string
+function createSVGBlob(svgString: string): Blob {
+  return new Blob([svgString], { type: "image/svg+xml" });
+}
+
+function getRandomIndex(max: number): number {
+  return Math.floor(Math.random() * max);
+}
 
 // Industries
 export const seedIndustries = internalMutation({
@@ -526,7 +576,6 @@ export const seedCompanies = internalMutation({
         name: "TechCorp Solutions",
         description:
           "Leading software development company specializing in enterprise solutions",
-        logo: "https://example.com/techcorp-logo.png",
         website: "https://techcorp.com",
         industryId: techIndustry,
         size: "201-500",
@@ -536,7 +585,6 @@ export const seedCompanies = internalMutation({
       {
         name: "FinanceFlow",
         description: "Modern fintech company revolutionizing digital payments",
-        logo: "https://example.com/financeflow-logo.png",
         website: "https://financeflow.com",
         industryId: financeIndustry,
         size: "51-200",
@@ -547,7 +595,6 @@ export const seedCompanies = internalMutation({
         name: "HealthTech Innovations",
         description:
           "Healthcare technology solutions for modern medical practices",
-        logo: "https://example.com/healthtech-logo.png",
         website: "https://healthtech-innovations.com",
         industryId: healthcareIndustry,
         size: "11-50",
@@ -557,7 +604,6 @@ export const seedCompanies = internalMutation({
       {
         name: "ShopSmart",
         description: "AI-powered e-commerce platform for small businesses",
-        logo: "https://example.com/shopsmart-logo.png",
         website: "https://shopsmart.com",
         industryId: ecommerceIndustry,
         size: "101-200",
@@ -567,7 +613,6 @@ export const seedCompanies = internalMutation({
       {
         name: "DataDrive Analytics",
         description: "Big data analytics and machine learning solutions",
-        logo: "https://example.com/datadrive-logo.png",
         website: "https://datadrive.com",
         industryId: techIndustry,
         size: "51-200",
@@ -934,5 +979,35 @@ export const runAll = internalMutation({
     await ctx.runMutation(internal.seed.seedExperiences, {});
 
     return { message: "All seed data created successfully!" };
+  },
+});
+
+export const uploadSVGLogos = action({
+  args: {},
+  handler: async (ctx) => {
+    const storageIds: string[] = [];
+    for (const svgString of SVG_LOGOS) {
+      const svgBlob = createSVGBlob(svgString);
+      const storageId = await ctx.storage.store(svgBlob);
+      storageIds.push(storageId);
+    }
+    return { storageIds };
+  },
+});
+
+export const assignRandomLogosToCompanies = internalMutation({
+  args: {
+    storageIds: v.array(v.id("_storage")),
+  },
+  handler: async (ctx, args) => {
+    const companies = await ctx.db.query("companies").collect();
+    for (const company of companies) {
+      const randomLogoId =
+        args.storageIds[Math.floor(Math.random() * args.storageIds.length)];
+      await ctx.db.patch(company._id, {
+        logo: randomLogoId,
+      });
+    }
+    return { message: "Random logos assigned to companies." };
   },
 });

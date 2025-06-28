@@ -33,7 +33,7 @@ const schema = defineSchema({
   companies: defineTable({
     name: v.string(),
     description: v.optional(v.string()),
-    logo: v.optional(v.string()),
+    logo: v.optional(v.id("_storage")),
     website: v.optional(v.string()),
     industryId: v.optional(v.id("industries")),
     size: v.optional(v.string()), // "1-10", "11-50", "51-200", etc.

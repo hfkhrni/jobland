@@ -1,88 +1,103 @@
-import type { PropsWithChildren, ReactElement } from "react";
-import { StyleSheet } from "react-native";
+import React, { PropsWithChildren, ReactElement, ReactNode } from "react";
+import { ImageBackground, ImageSourcePropType, View } from "react-native";
 import Animated, {
   interpolate,
   useAnimatedRef,
   useAnimatedStyle,
   useScrollViewOffset,
 } from "react-native-reanimated";
-
-import { ThemedView } from "~/components/ThemedView";
 import { useBottomTabOverflow } from "~/components/ui/TabBarBackground";
-import { useColorScheme } from "~/hooks/useColorScheme";
+import { NAV_THEME } from "~/lib/constants";
+import { useColorScheme } from "~/lib/useColorScheme";
+import { Text } from "./ui/text";
 
 const HEADER_HEIGHT = 250;
+const AnimatedImageBackground =
+  Animated.createAnimatedComponent(ImageBackground);
 
 type Props = PropsWithChildren<{
-  headerImage: ReactElement;
-  headerBackgroundColor: { dark: string; light: string };
+  /** the source for your parallax image */
+  headerBackground: ImageSourcePropType;
+  /** any React node you want centered/flexed over the image */
+  headerOverlay: ReactElement;
+  overlayColor?: string;
 }>;
 
 export default function ParallaxScrollView({
   children,
-  headerImage,
-  headerBackgroundColor,
+  headerBackground,
+  headerOverlay,
+  overlayColor = "rgba(0,0,0,0.3)",
 }: Props) {
-  const colorScheme = useColorScheme() ?? "light";
+  const { colorScheme } = useColorScheme();
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollRef);
   const bottom = useBottomTabOverflow();
-  const headerAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateY: interpolate(
-            scrollOffset.value,
-            [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-            [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75]
-          ),
-        },
-        {
-          scale: interpolate(
-            scrollOffset.value,
-            [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-            [2, 1, 1]
-          ),
-        },
-      ] as const,
-    };
+
+  const headerAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateY: interpolate(
+          scrollOffset.value,
+          [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
+          [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75]
+        ),
+      },
+      {
+        scale: interpolate(
+          scrollOffset.value,
+          [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
+          [2, 1, 1]
+        ),
+      },
+    ] as const,
+  }));
+  const renderedChildren = React.Children.map(children, (child: ReactNode) => {
+    if (typeof child === "string" || typeof child === "number") {
+      return (
+        <Text
+          className="text-base"
+          style={{ color: NAV_THEME[colorScheme].text }}
+        >
+          {child}
+        </Text>
+      );
+    }
+    return child;
   });
+  const bg = NAV_THEME[colorScheme].background;
 
   return (
-    <ThemedView style={styles.container}>
+    <View className="flex-1" style={{ backgroundColor: bg }}>
       <Animated.ScrollView
         ref={scrollRef}
         scrollEventThrottle={16}
         scrollIndicatorInsets={{ bottom }}
-        contentContainerStyle={{ paddingBottom: bottom }}
+        contentContainerStyle={{
+          paddingBottom: bottom,
+        }}
       >
-        <Animated.View
-          style={[
-            styles.header,
-            { backgroundColor: headerBackgroundColor[colorScheme] },
-            headerAnimatedStyle,
-          ]}
+        <AnimatedImageBackground
+          source={headerBackground}
+          resizeMode="none"
+          className="w-full overflow-hidden"
+          style={[{ height: HEADER_HEIGHT }, headerAnimatedStyle]}
         >
-          {headerImage}
-        </Animated.View>
-        <ThemedView style={styles.content}>{children}</ThemedView>
+          {/* Color overlay */}
+          <View
+            className="absolute inset-0"
+            style={{ backgroundColor: overlayColor }}
+          />
+          {/* Your flex overlay on top */}
+          <View className="absolute inset-0 flex-1 justify-center items-center">
+            {headerOverlay}
+          </View>
+        </AnimatedImageBackground>
+
+        <View className="flex-1" style={{ backgroundColor: bg }}>
+          {renderedChildren}
+        </View>
       </Animated.ScrollView>
-    </ThemedView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    height: HEADER_HEIGHT,
-    overflow: "hidden",
-  },
-  content: {
-    flex: 1,
-    padding: 32,
-    gap: 16,
-    overflow: "hidden",
-  },
-});

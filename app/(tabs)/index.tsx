@@ -1,71 +1,142 @@
-import { useAuthActions, useAuthToken } from "@convex-dev/auth/react";
-import { useConvexAuth } from "convex/react";
-import { Image } from "expo-image";
+import { Ionicons } from "@expo/vector-icons";
+import { usePaginatedQuery } from "convex/react";
 import { useRouter } from "expo-router";
-import { Platform, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { HelloWave } from "~/components/HelloWave";
 import ParallaxScrollView from "~/components/ParallaxScrollView";
-import { ThemedText } from "~/components/ThemedText";
-import { ThemedView } from "~/components/ThemedView";
+import { Button } from "~/components/ui/button";
+import { Text } from "~/components/ui/text";
+import { api } from "~/convex/_generated/api";
+import { NAV_THEME } from "~/lib/constants";
+import { useColorScheme } from "~/lib/useColorScheme";
+import { JobCard } from "./jobs";
 
 export default function HomeScreen() {
-  const { isAuthenticated, isLoading } = useConvexAuth();
-  // useAuthToken()
-  const token = useAuthToken();
-  const { signIn, signOut } = useAuthActions();
-  console.log(token);
+  const { colorScheme } = useColorScheme();
   const router = useRouter();
+  const {
+    results: jobs,
+    status,
+    loadMore,
+  } = usePaginatedQuery(
+    api.jobs.getJobs,
+    { paginationOpts: { limit: 5 } }, // Show fewer jobs on home screen
+    { initialNumItems: 5 }
+  );
+
+  const theme = NAV_THEME[colorScheme];
+  const bg = theme.background;
+  const cardBg = theme.card;
+  const primary = theme.primary;
+  const textColor = theme.text;
+
+  const handleJobPress = (jobId: string) => {
+    router.navigate({
+      pathname: "/(job)/[id]",
+      params: { id: jobId },
+    });
+  };
+
+  const handleViewAllJobs = () => {
+    router.navigate("/(tabs)/jobs");
+  };
+
+  const formatSalary = (salary: any) => {
+    if (!salary) return null;
+    return `${salary.currency}${salary.min.toLocaleString()} - ${salary.currency}${salary.max.toLocaleString()}`;
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("~/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
+    <SafeAreaView
+      style={{ flex: 1 }}
+      edges={{ bottom: "off", top: "additive", left: "off", right: "off" }}
     >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">
-            npm run reset-project
-          </ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      <ParallaxScrollView
+        headerBackground={require("~/assets/images/image.png")}
+        headerOverlay={
+          <View style={{ padding: 16 }}>
+            <Button>
+              <Text>Submit a complaint</Text>
+            </Button>
+          </View>
+        }
+      >
+        <View className="w-full flex-col px-4">
+          {/* Jobs Section Header */}
+          <View className="flex-row items-center justify-between mb-6 mt-4">
+            <Text className="text-3xl font-bold text-gray-900">
+              Recent Jobs
+            </Text>
+            <Pressable
+              onPress={handleViewAllJobs}
+              className="flex-row items-center px-4 py-2 bg-blue-50 rounded-full"
+            >
+              <Text className="text-blue-600 font-semibold mr-1">View All</Text>
+              <Ionicons name="arrow-forward" size={16} color="#2563EB" />
+            </Pressable>
+          </View>
+
+          {/* Jobs List */}
+          <View className="space-y-4">
+            {jobs?.map((job, index) => (
+              <JobCard job={job} key={index} formatSalary={formatSalary} />
+            ))}
+          </View>
+          {/* 
+          <Pressable className="p-2 -mr-2 -mt-2">
+                    <Ionicons
+                      name="bookmark-outline"
+                      size={20}
+                      color="#6B7280"
+                    />
+                  </Pressable> */}
+          {/* Load More Button */}
+          {status === "CanLoadMore" && (
+            <View className="mt-6 mb-4">
+              <Pressable
+                onPress={() => loadMore(5)}
+                className="py-4 px-6 rounded-xl bg-gray-50 border border-gray-200"
+              >
+                <Text className="text-center text-gray-700 font-semibold">
+                  Load More Jobs
+                </Text>
+              </Pressable>
+            </View>
+          )}
+
+          {/* View All Jobs Button */}
+          <View className="mt-6 mb-8">
+            <Button
+              onPress={handleViewAllJobs}
+              className="w-full bg-blue-600 py-4 rounded-xl"
+            >
+              <View className="flex-row items-center justify-center">
+                <Text className="text-white font-semibold text-lg mr-2">
+                  Browse All Jobs
+                </Text>
+                <Ionicons name="briefcase-outline" size={20} color="white" />
+              </View>
+            </Button>
+          </View>
+
+          {/* Quick Stats */}
+          <View className="bg-blue-50 rounded-xl p-6 mb-8">
+            <View className="flex-row items-center justify-between">
+              <View>
+                <Text className="text-2xl font-bold text-gray-900 mb-1">
+                  {jobs?.length || 0}+
+                </Text>
+                <Text className="text-gray-600">Jobs Available</Text>
+              </View>
+              <View className="bg-blue-100 p-3 rounded-full">
+                <Ionicons name="trending-up" size={24} color="#2563EB" />
+              </View>
+            </View>
+          </View>
+        </View>
+      </ParallaxScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -85,5 +156,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: "absolute",
+  },
+  jobCard: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    elevation: 2,
   },
 });
