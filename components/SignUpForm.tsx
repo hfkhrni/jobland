@@ -948,6 +948,7 @@ function ReviewStep({ form }: ReviewStepProps) {
 
 export function SignUpForm() {
   const { signIn, signOut } = useAuthActions();
+  // const { isAuthenticated, isLoading } = useConvexAuth();
   const addUserIndustry = useMutation(api.users.addUserIndustry);
   const addUserSkill = useMutation(api.users.addUserSkill);
   const router = useRouter();
@@ -1080,11 +1081,26 @@ export function SignUpForm() {
     }
   };
 
-  const handleNext = (): void => {
+  const handleNext = async (): Promise<void> => {
+    // Validate current step before proceeding
     if (currentStep < 2 && !validateCurrentStep()) {
       return;
     }
 
+    // Handle step-specific actions
+    switch (currentStep) {
+      case 1: // After contact info step
+        await createUserAccount();
+        break;
+      case 2: // After professional profile step
+        await addProfessionalProfile();
+        break;
+      case 3: // After review step
+        await completeSignup();
+        return; // Don't increment step, we're redirecting
+    }
+
+    // Move to next step if not at the end
     if (currentStep < totalSteps - 1) {
       setCurrentStep(currentStep + 1);
     }
@@ -1096,7 +1112,95 @@ export function SignUpForm() {
     }
   };
 
-  const handleSubmit = async (): Promise<void> => {
+  // const waitForAuthentication = async (timeout = 5000): Promise<boolean> => {
+  //   const startTime = Date.now();
+
+  //   return new Promise((resolve, reject) => {
+  //     const checkAuth = () => {
+  //       if (isAuthenticated && !isLoading) {
+  //         resolve(true);
+  //       } else if (Date.now() - startTime > timeout) {
+  //         reject(new Error("Authentication timeout"));
+  //       } else {
+  //         setTimeout(checkAuth, 100);
+  //       }
+  //     };
+
+  //     checkAuth();
+  //   });
+  // };
+
+  // const handleSubmit = async (): Promise<void> => {
+  //   const result = SignUpSchema.safeParse(form);
+  //   if (!result.success) {
+  //     const fieldErrors = Object.fromEntries(
+  //       Object.entries(result.error.flatten().fieldErrors).map(([k, v]) => [
+  //         k,
+  //         v?.[0],
+  //       ])
+  //     );
+  //     setErrors(fieldErrors);
+  //     return;
+  //   }
+
+  //   setErrors({});
+  //   setSubmitting(true);
+
+  //   try {
+  //     await signIn("password", {
+  //       ...form,
+  //       flow: "signUp",
+  //     });
+  //     // await signIn("password", {
+  //     //   email: form.email,
+  //     //   password: form.password,
+  //     //   flow: "signIn",
+  //     // });
+  //     await signOut();
+
+  //     // Sign in with credentials to establish proper session
+  //     await signIn("password", {
+  //       email: form.email,
+  //       password: form.password,
+  //       flow: "signIn",
+  //     });
+
+  //     await waitForAuthentication();
+
+  //     // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  //     // console.log(signInResult);
+  //     if (form.industries && form.industries.length > 0) {
+  //       for (const industryId of form.industries) {
+  //         await addUserIndustry({ industryId: industryId as Id<"industries"> });
+  //       }
+  //     }
+
+  //     if (form.skills && form.skills.length > 0) {
+  //       for (const skillId of form.skills) {
+  //         await addUserSkill({ skillId: skillId as Id<"skills"> });
+  //       }
+  //     }
+  //     Toast.show({
+  //       type: "success",
+  //       text1: "Account created successfully!",
+  //       text2: "Please sign in to continue",
+  //     });
+  //     await signOut();
+  //     router.replace("/(auth)/sign-in");
+  //   } catch (error) {
+  //     console.log(error);
+  //     Toast.show({
+  //       type: "error",
+  //       text1: "Sign up failed",
+  //       text2: "Try to sign up again",
+  //     });
+  //   }
+
+  //   setSubmitting(false);
+  // };
+
+  const createUserAccount = async (): Promise<void> => {
     const result = SignUpSchema.safeParse(form);
     if (!result.success) {
       const fieldErrors = Object.fromEntries(
@@ -1117,10 +1221,42 @@ export function SignUpForm() {
         ...form,
         flow: "signUp",
       });
+
+      await signOut();
+
+      // Sign in with credentials to establish proper session
       await signIn("password", {
-        ...form,
+        email: form.email,
+        password: form.password,
         flow: "signIn",
       });
+
+      // await waitForAuthentication();
+
+      Toast.show({
+        type: "success",
+        text1: "Account created successfully!",
+        text2: "Continue to complete your profile",
+      });
+    } catch (error) {
+      console.log(error);
+      Toast.show({
+        type: "error",
+        text1: "Sign up failed",
+        text2: "Try to sign up again",
+      });
+      setSubmitting(false);
+      return;
+    }
+
+    setSubmitting(false);
+  };
+
+  // Step 2: Add industries and skills
+  const addProfessionalProfile = async (): Promise<void> => {
+    setSubmitting(true);
+
+    try {
       if (form.industries && form.industries.length > 0) {
         for (const industryId of form.industries) {
           await addUserIndustry({ industryId: industryId as Id<"industries"> });
@@ -1132,18 +1268,43 @@ export function SignUpForm() {
           await addUserSkill({ skillId: skillId as Id<"skills"> });
         }
       }
+
       Toast.show({
         type: "success",
-        text1: "Account created successfully!",
+        text1: "Profile updated!",
+        text2: "Your professional profile has been saved",
+      });
+    } catch (error) {
+      console.log(error);
+      Toast.show({
+        type: "error",
+        text1: "Profile update failed",
+        text2: "Your account was created but profile update failed",
+      });
+    }
+
+    setSubmitting(false);
+  };
+
+  // Step 3: Complete signup and redirect
+  const completeSignup = async (): Promise<void> => {
+    setSubmitting(true);
+
+    try {
+      Toast.show({
+        type: "success",
+        text1: "Registration complete!",
         text2: "Please sign in to continue",
       });
+
       await signOut();
       router.replace("/(auth)/sign-in");
     } catch (error) {
+      console.log(error);
       Toast.show({
         type: "error",
-        text1: "Sign up failed",
-        text2: "Try to sign up again",
+        text1: "Sign out failed",
+        text2: "Please try signing in manually",
       });
     }
 
@@ -1179,16 +1340,31 @@ export function SignUpForm() {
     }
   };
 
+  // const getStepButtonText = (): string => {
+  //   switch (currentStep) {
+  //     case 0:
+  //       return "Continue";
+  //     case 1:
+  //       return "Continue";
+  //     case 2:
+  //       return "Review";
+  //     case 3:
+  //       return submitting ? "Creating Account..." : "Create Account";
+  //     default:
+  //       return "Continue";
+  //   }
+  // };
+
   const getStepButtonText = (): string => {
     switch (currentStep) {
       case 0:
         return "Continue";
       case 1:
-        return "Continue";
-      case 2:
-        return "Review";
-      case 3:
         return submitting ? "Creating Account..." : "Create Account";
+      case 2:
+        return submitting ? "Updating Profile..." : "Update Profile";
+      case 3:
+        return submitting ? "Completing..." : "Complete Registration";
       default:
         return "Continue";
     }
@@ -1255,7 +1431,7 @@ export function SignUpForm() {
                   currentStep === 0 ? "flex-1" : "flex-1",
                   currentStep === 3 ? "bg-green-600" : "bg-blue-600"
                 )}
-                onPress={currentStep === 3 ? handleSubmit : handleNext}
+                onPress={handleNext} // Changed from handleSubmit to handleNext
                 disabled={!isStepValid() || submitting}
               >
                 {submitting ? (

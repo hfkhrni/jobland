@@ -41,6 +41,37 @@ const SVG_LOGOS = [
   `<svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M29.4554 2.43478V0H35V22.4348C35 32.1358 27.165 40 17.5 40C8.24271 40 0.664262 32.7853 0.0413736 23.6522H0V0H5.54455V2.43478L14.901 2.43478V0H20.4455V2.43478L29.4554 2.43478ZM29.4554 22.4348V19.0202C28.8318 19.6656 28.1633 20.2785 27.4539 20.8558C25.1121 22.7615 22.3612 24.2503 19.369 25.2589C16.3764 26.2677 13.1833 26.7826 9.96797 26.7826H6.35343C8.08848 31.2608 12.425 34.4348 17.5 34.4348C24.1028 34.4348 29.4554 29.0622 29.4554 22.4348ZM15.4269 18.2435C14.3706 19.3674 13.18 20.3419 11.8852 21.1425C13.8545 20.9882 15.7827 20.5971 17.6038 19.9833C20.013 19.1712 22.1698 17.9913 23.9621 16.5329C25.7535 15.075 27.136 13.3757 28.0645 11.5515C28.6507 10.3998 29.0518 9.20727 29.2674 8H20.2671C20.0641 9.47968 19.6891 10.9319 19.1475 12.3231C18.2893 14.5274 17.0275 16.5405 15.4269 18.2435ZM5.54455 17.8146V8H14.6483C14.4948 8.78546 14.2724 9.55482 13.9832 10.2975C13.3786 11.8506 12.4962 13.2517 11.3938 14.4246C10.2918 15.5971 8.99228 16.518 7.57404 17.143C6.91535 17.4333 6.23601 17.6576 5.54455 17.8146Z" fill="#1D3AA7"></path>
 </svg>`,
+  `<svg width="50" height="40" viewBox="0 0 50 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M43 31L31 40H5L7 35L12 31H29L32 35L40 11L45 7H50L43 31ZM43 5L38 9H21L18 5L10 29L5 33H0L7 9L19 0H45L43 5ZM24 13H35L29 31L26 27H15L21 9L24 13Z" fill="#297AFF"></path>
+</svg>`,
+  `<svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 15V31H5C5.52527 31 6.04541 31.1035 6.53076 31.3045C7.01599 31.5055 7.45703 31.8001 7.82837 32.1716C8.19983 32.543 8.49451 32.984 8.69556 33.4693C8.89648 33.9546 9 34.4747 9 35V40H21L36 25V9H31C30.4747 9 29.9546 8.89655 29.4692 8.69553C28.984 8.49451 28.543 8.19986 28.1716 7.82843C27.8002 7.457 27.5055 7.01602 27.3044 6.53073C27.1035 6.04544 27 5.5253 27 5V0H15L0 15ZM17 30H10V19L19 10H26V21L17 30Z" fill="#0004E8"></path>
+</svg>`,
+  `<svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.2001 32C45.8275 32 51.2001 26.6274 51.2001 20C51.2001 13.3726 45.8275 8 39.2001 8C32.9802 8 27.8656 12.7321 27.2601 18.7925C24.8084 17.6836 22.1597 17.0209 19.4473 16.8465C20.9595 7.29911 29.2274 0 39.2001 0C50.2458 0 59.2001 8.95431 59.2001 20C59.2001 30.6428 50.887 39.344 40.4 39.9646V40H27.2195V38.2545C27.2195 35.987 26.2844 33.7821 24.5705 32.1336C22.8517 30.4804 20.4908 29.5273 18 29.5273C15.5092 29.5273 13.1483 30.4804 11.4295 32.1336C9.71564 33.7821 8.78049 35.987 8.78049 38.2545V40H0V38.2118C0 33.5371 1.94004 29.0906 5.33341 25.8398C8.61822 22.693 13.0047 20.9102 17.5711 20.805C17.7139 20.8017 17.8569 20.8 18 20.8C18.1108 20.8 18.2215 20.801 18.3322 20.803C22.9333 20.8851 27.3586 22.6707 30.6666 25.8398C32.4991 27.5953 33.9078 29.6995 34.8159 32H39.2001Z" fill="#5233DD"></path>
+<path d="M21.677 34.9245C22.6521 35.7725 23.2 36.9227 23.2 38.122V40H12.8V38.122C12.8 36.9227 13.3479 35.7725 14.323 34.9245C15.2982 34.0764 16.6209 33.6 18 33.6C19.3791 33.6 20.7018 34.0764 21.677 34.9245Z" fill="#5233DD"></path>
+<path d="M43.7818 18.0363C42.3358 18.0363 41.1637 16.8642 41.1637 15.4182V14.7636C41.1637 13.6792 40.2845 12.8 39.2 12.8C38.1155 12.8 37.2364 13.6791 37.2364 14.7636V15.4182C37.2364 16.8642 36.0642 18.0363 34.6182 18.0363H33.9636C32.8792 18.0363 32 18.9155 32 20C32 21.0845 32.8792 21.9636 33.9636 21.9636H34.6182C36.0642 21.9636 37.2364 23.1358 37.2364 24.5818V25.2364C37.2364 26.3209 38.1155 27.2 39.2 27.2C40.2845 27.2 41.1637 26.3209 41.1637 25.2364V24.5818C41.1637 23.1358 42.3358 21.9636 43.7818 21.9636H44.4364C45.5209 21.9636 46.4 21.0845 46.4 20C46.4 18.9155 45.5209 18.0363 44.4364 18.0363H43.7818Z" fill="#5233DD"></path>
+<path d="M11.2001 3.20004C11.2001 4.96732 12.6328 6.39999 14.4001 6.39999H15.2C16.5255 6.39999 17.6 7.47451 17.6 8.79999C17.6 10.1255 16.5255 11.2 15.2 11.2H14.4001C12.6328 11.2 11.2001 12.6327 11.2001 14.3999V15.2C11.2001 16.5255 10.1256 17.6 8.80011 17.6C7.47463 17.6 6.40011 16.5255 6.40011 15.2L6.40011 14.4C6.40011 12.6327 4.96742 11.2 3.20011 11.2H2.4C1.07452 11.2 0 10.1255 0 8.79999C0 7.47451 1.07452 6.39999 2.4 6.39999H3.20012C4.96742 6.39999 6.40011 4.96731 6.40011 3.2L6.40011 2.4C6.40011 1.07452 7.47463 0 8.80011 0C10.1256 0 11.2001 1.07452 11.2001 2.4V3.20004Z" fill="#5233DD"></path>
+</svg>`,
+  `<svg width="49" height="40" viewBox="0 0 49 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M37.3947 40C43.8275 39.8689 49 34.6073 49 28.1389C49 24.9931 47.7512 21.9762 45.5282 19.7518L25.7895 0V12.2771C25.7895 14.3303 26.6046 16.2995 28.0556 17.7514L32.6795 22.3784L32.6921 22.3907L40.4452 30.149C40.697 30.4009 40.697 30.8094 40.4452 31.0613C40.1935 31.3133 39.7852 31.3133 39.5335 31.0613L36.861 28.3871H12.139L9.46655 31.0613C9.21476 31.3133 8.80654 31.3133 8.55476 31.0613C8.30297 30.8094 8.30297 30.4009 8.55475 30.149L16.3079 22.3907L16.3205 22.3784L20.9444 17.7514C22.3954 16.2995 23.2105 14.3303 23.2105 12.2771V0L3.47175 19.7518C1.24882 21.9762 0 24.9931 0 28.1389C0 34.6073 5.17252 39.8689 11.6053 40H37.3947Z" fill="#FF0A0A"></path>
+</svg>`,
+  `<svg width="70" height="40" viewBox="0 0 70 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M37.2551 1.61586C38.1803 0.653384 39.4368 0.112671 40.7452 0.112671C46.6318 0.112671 52.1793 0.112674 57.6424 0.112685C68.6302 0.112708 74.1324 13.9329 66.3629 22.0156L49.4389 39.6217C48.662 40.43 47.3335 39.8575 47.3335 38.7144V23.2076L49.2893 21.1729C50.8432 19.5564 49.7427 16.7923 47.5451 16.7923H22.6667L37.2551 1.61586Z" fill="#3A04FF"></path>
+<path d="M32.7449 38.3842C31.8198 39.3467 30.5633 39.8874 29.2549 39.8874C23.3683 39.8874 17.8208 39.8874 12.3577 39.8874C1.36983 39.8873 -4.13236 26.0672 3.63721 17.9844L20.5612 0.378369C21.3381 -0.429908 22.6666 0.142547 22.6666 1.28562L22.6667 16.7923L20.7108 18.8271C19.1569 20.4437 20.2574 23.2077 22.455 23.2077L47.3335 23.2076L32.7449 38.3842Z" fill="#3A04FF"></path>
+</svg>`,
+  `<svg width="43" height="41" viewBox="0 0 43 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.8287 8.94266C22.4425 8.94266 21.0699 9.21493 19.7892 9.74393C18.5086 10.2729 17.3449 11.0483 16.3648 12.0257C15.3846 13.0032 14.6071 14.1636 14.0766 15.4407C13.7048 16.3358 13.4595 17.276 13.346 18.2342C13.2568 18.9873 12.8442 19.6828 12.1656 20.0212L10.1584 21.022C9.47979 21.3604 9.03456 22.0559 9.12376 22.809C9.23726 23.7673 9.48259 24.7074 9.85438 25.6025C10.3849 26.8796 11.1624 28.04 12.1425 29.0175C13.1227 29.9949 14.2864 30.7703 15.567 31.2993C16.8477 31.8283 18.2203 32.1006 19.6064 32.1006C20.9926 32.1006 22.3652 31.8283 23.6459 31.2993C24.9265 30.7703 26.0902 29.9949 27.0704 29.0175C28.0505 28.04 28.828 26.8796 29.3585 25.6025C29.7303 24.7074 29.9756 23.7673 30.0891 22.809C30.1783 22.0559 30.5909 21.3604 31.2696 21.022L33.2767 20.0212C33.9553 19.6828 34.4006 18.9873 34.3114 18.2342C34.1979 17.276 33.9525 16.3358 33.5807 15.4407C33.0503 14.1636 32.2727 13.0032 31.2926 12.0257C30.3124 11.0483 29.1488 10.2729 27.8681 9.74393C26.5874 9.21493 25.2148 8.94266 23.8287 8.94266ZM28.7047 17.4549C28.8111 17.711 28.8968 17.9745 28.9612 18.2428C29.1384 18.9802 28.6775 19.6828 27.9989 20.0212L25.9918 21.022C25.3131 21.3604 24.9161 22.063 24.739 22.8004C24.6745 23.0688 24.5889 23.3322 24.4825 23.5884C24.2172 24.2269 23.8285 24.8071 23.3384 25.2959C22.8483 25.7846 22.2665 26.1723 21.6262 26.4368C20.9858 26.7013 20.2995 26.8374 19.6064 26.8374C18.9134 26.8374 18.2271 26.7013 17.5867 26.4368C16.9464 26.1723 16.3646 25.7846 15.8745 25.2959C15.3844 24.8071 14.9956 24.2269 14.7304 23.5884C14.624 23.3322 14.5384 23.0688 14.4739 22.8004C14.2968 22.063 14.7576 21.3604 15.4362 21.022L17.4433 20.0212C18.122 19.6828 18.519 18.9802 18.6961 18.2428C18.7606 17.9745 18.8463 17.711 18.9526 17.4549C19.2179 16.8163 19.6066 16.2361 20.0967 15.7474C20.5868 15.2586 21.1686 14.871 21.8089 14.6065C22.4493 14.342 23.1356 14.2058 23.8287 14.2058C24.5218 14.2058 25.2081 14.342 25.8484 14.6065C26.4887 14.871 27.0705 15.2586 27.5606 15.7474C28.0507 16.2361 28.4395 16.8163 28.7047 17.4549Z" fill="#E22935"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.8287 0.521606C21.3336 0.521606 18.8629 1.01169 16.5577 1.96389C14.2525 2.91608 12.158 4.31174 10.3936 6.07116C8.62933 7.83059 7.2298 9.91933 6.27496 12.2181C5.47865 14.1352 5.00464 16.1672 4.86918 18.2322C4.81955 18.989 4.39977 19.6828 3.72111 20.0212L1.714 21.022C1.03534 21.3604 0.597326 22.0543 0.646962 22.811C0.782417 24.8761 1.25643 26.908 2.05273 28.8251C3.00757 31.1239 4.4071 33.2126 6.17142 34.9721C7.93573 36.7315 10.0303 38.1271 12.3355 39.0793C14.6406 40.0315 17.1113 40.5216 19.6064 40.5216C22.1016 40.5216 24.5722 40.0315 26.8774 39.0793C29.1826 38.1271 31.2772 36.7315 33.0415 34.9721C34.8058 33.2126 36.2053 31.1239 37.1602 28.8251C37.9565 26.908 38.4305 24.8761 38.5659 22.811C38.6156 22.0543 39.0353 21.3604 39.714 21.022L41.7211 20.0212C42.3998 19.6828 42.8378 18.989 42.7882 18.2322C42.6527 16.1672 42.1787 14.1352 41.3824 12.2181C40.4275 9.91933 39.028 7.83059 37.2637 6.07116C35.4994 4.31174 33.4048 2.91608 31.0997 1.96389C28.7945 1.01169 26.3238 0.521606 23.8287 0.521606ZM33.2726 22.8102C33.3413 22.0549 33.7576 21.3604 34.4362 21.022L36.4433 20.0212C37.122 19.6828 37.5635 18.9883 37.4948 18.2331C37.3699 16.8597 37.0373 15.5106 36.5064 14.2323C35.8167 12.572 34.806 11.0635 33.5317 9.79278C32.2575 8.52208 30.7448 7.51411 29.0799 6.82641C27.4151 6.13872 25.6307 5.78476 23.8287 5.78476C22.0266 5.78476 20.2423 6.13872 18.5774 6.82641C16.9125 7.51411 15.3998 8.52208 14.1256 9.79278C12.8514 11.0635 11.8406 12.572 11.151 14.2323C10.62 15.5106 10.2874 16.8597 10.1625 18.2331C10.0938 18.9883 9.67755 19.6828 8.99889 20.0212L6.99178 21.022C6.31312 21.3604 5.87162 22.0549 5.9403 22.8102C6.0652 24.1835 6.39777 25.5326 6.92876 26.811C7.61837 28.4712 8.62914 29.9797 9.90337 31.2504C11.1776 32.5211 12.6903 33.5291 14.3552 34.2168C16.02 34.9045 17.8044 35.2584 19.6064 35.2584C21.4085 35.2584 23.1929 34.9045 24.8577 34.2168C26.5226 33.5291 28.0353 32.5211 29.3095 31.2504C30.5838 29.9797 31.5945 28.4712 32.2841 26.811C32.8151 25.5326 33.1477 24.1835 33.2726 22.8102Z" fill="#E22935"></path>
+<path d="M42.8234 19.0401H37.5437C37.5414 19.3092 37.3834 19.5526 37.1408 19.6735L33.739 21.3697C33.4965 21.4906 33.3417 21.734 33.3227 22.0031H38.6023C38.619 21.7339 38.7743 21.4906 39.0168 21.3697L42.4186 19.6735C42.6611 19.5526 42.8187 19.3093 42.8234 19.0401Z" fill="#FF6670"></path>
+<path d="M0.612061 22.0031H5.89171C5.89403 21.734 6.05205 21.4906 6.29459 21.3697L9.6964 19.6735C9.93894 19.5526 10.0937 19.3092 10.1128 19.0401H4.83311C4.81639 19.3093 4.66115 19.5526 4.41862 19.6735L1.01681 21.3697C0.774281 21.4906 0.616707 21.7339 0.612061 22.0031Z" fill="#FF6670"></path>
+<path d="M13.2815 19.0401C13.2599 19.3092 13.1056 19.5526 12.8631 19.6735L9.46126 21.3697C9.2187 21.4906 9.06019 21.7341 9.0604 22.0031H14.347C14.3357 21.7346 14.4964 21.4907 14.739 21.3697L18.1408 19.6735C18.3835 19.5525 18.5358 19.3086 18.568 19.0401H13.2815Z" fill="#FF6670"></path>
+<path d="M29.0885 19.0401C29.0997 19.3086 28.9391 19.5525 28.6964 19.6735L25.2946 21.3697C25.0519 21.4907 24.8997 21.7346 24.8674 22.0031H30.154C30.1755 21.7341 30.3298 21.4906 30.5724 21.3697L33.9742 19.6735C34.2167 19.5526 34.3752 19.3092 34.375 19.0401H29.0885Z" fill="#FF6670"></path>
+</svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#F06225" d="M20 0c11.046 0 20 8.954 20 20v14a6 6 0 0 1-6 6H21v-8.774c0-2.002.122-4.076 1.172-5.78a10 10 0 0 1 6.904-4.627l.383-.062a.8.8 0 0 0 0-1.514l-.383-.062a10 10 0 0 1-8.257-8.257l-.062-.383a.8.8 0 0 0-1.514 0l-.062.383a9.999 9.999 0 0 1-4.627 6.904C12.85 18.878 10.776 19 8.774 19H.024C.547 8.419 9.29 0 20 0Z"></path><path fill="#F06225" d="M0 21h8.774c2.002 0 4.076.122 5.78 1.172a10.02 10.02 0 0 1 3.274 3.274C18.878 27.15 19 29.224 19 31.226V40H6a6 6 0 0 1-6-6V21ZM40 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path></svg>`,
+  `<svg id="logo-88" width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="ccustom" fill-rule="evenodd" clip-rule="evenodd" d="M13.7146 0.516113C11.4582 0.516113 9.2943 1.41245 7.69881 3.00794L0 10.7067V14.2307C0 16.7204 1.06944 18.9603 2.77401 20.5161C1.06944 22.0719 0 24.3118 0 26.8015V30.3255L7.69881 38.0243C9.2943 39.6198 11.4582 40.5161 13.7146 40.5161C16.2043 40.5161 18.4442 39.4467 20 37.7421C21.5558 39.4467 23.7957 40.5161 26.2854 40.5161C28.5418 40.5161 30.7057 39.6198 32.3012 38.0243L40 30.3255V26.8015C40 24.3118 38.9306 22.0719 37.226 20.5161C38.9306 18.9603 40 16.7204 40 14.2307V10.7067L32.3012 3.00794C30.7057 1.41245 28.5418 0.516113 26.2854 0.516113C23.7957 0.516113 21.5558 1.58555 20 3.29012C18.4442 1.58555 16.2043 0.516113 13.7146 0.516113ZM25.7588 20.5161C25.6629 20.4286 25.5688 20.3387 25.4766 20.2465L20 14.7699L14.5234 20.2465C14.4312 20.3387 14.3371 20.4286 14.2412 20.5161C14.3371 20.6036 14.4312 20.6935 14.5234 20.7857L20 26.2623L25.4766 20.7857C25.5688 20.6935 25.6629 20.6036 25.7588 20.5161ZM22.2222 30.3255L22.2222 32.0085C22.2222 34.2525 24.0414 36.0717 26.2854 36.0717C27.363 36.0717 28.3965 35.6436 29.1585 34.8816L35.5556 28.4845V26.8015C35.5556 24.5575 33.7364 22.7383 31.4924 22.7383C30.4148 22.7383 29.3813 23.1664 28.6193 23.9284L22.2222 30.3255ZM17.7778 30.3255L11.3807 23.9284C10.6187 23.1664 9.58524 22.7383 8.50762 22.7383C6.26359 22.7383 4.44444 24.5575 4.44444 26.8015V28.4845L10.8415 34.8816C11.6035 35.6436 12.637 36.0717 13.7146 36.0717C15.9586 36.0717 17.7778 34.2525 17.7778 32.0085V30.3255ZM17.7778 9.02373V10.7067L11.3807 17.1038C10.6187 17.8658 9.58524 18.2939 8.50762 18.2939C6.26359 18.2939 4.44444 16.4747 4.44444 14.2307V12.5477L10.8415 6.15063C11.6035 5.38864 12.637 4.96056 13.7146 4.96056C15.9586 4.96056 17.7778 6.7797 17.7778 9.02373ZM28.6193 17.1038L22.2222 10.7067L22.2222 9.02373C22.2222 6.7797 24.0414 4.96056 26.2854 4.96056C27.363 4.96056 28.3965 5.38864 29.1585 6.15063L35.5556 12.5477V14.2307C35.5556 16.4747 33.7364 18.2939 31.4924 18.2939C30.4148 18.2939 29.3813 17.8658 28.6193 17.1038Z" fill="#FF630B"></path></svg>`,
+  `<svg id="logo-71" width="43" height="48" viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M23.2 8.04745C23.2 6.96404 22.9478 5.89551 22.4632 4.92647C22.0444 4.08884 21.7985 3.17549 21.7401 2.24081L21.6 0L21.46 2.24073C21.4015 3.17542 21.1556 4.0888 20.7368 4.92644C20.2523 5.8955 20 6.96406 20 8.04749V39.9525C20 41.0359 20.2523 42.1045 20.7368 43.0736C21.1556 43.9112 21.4015 44.8246 21.46 45.7593L21.6 48L21.7401 45.7592C21.7985 44.8245 22.0444 43.9112 22.4632 43.0735C22.9478 42.1045 23.2 41.036 23.2 39.9525V8.04745ZM14.4632 8.12647C14.9478 9.09551 15.2 10.1641 15.2 11.2475V36.7525C15.2 37.836 14.9478 38.9045 14.4632 39.8736C14.0444 40.7112 13.7985 41.6246 13.74 42.5592L13.6 44.8L13.46 42.5592C13.4015 41.6246 13.1556 40.7112 12.7368 39.8736C12.2522 38.9045 12 37.836 12 36.7525V11.2475C12 10.1641 12.2522 9.09551 12.7368 8.12647C13.1556 7.28883 13.4015 6.37547 13.46 5.44078L13.6 3.20001L13.74 5.44078C13.7985 6.37547 14.0444 7.28883 14.4632 8.12647ZM11.2 14.4475C11.2 13.364 10.9478 12.2955 10.4632 11.3265C10.0444 10.4888 9.79847 9.57545 9.74005 8.64076L9.6 6.39999L9.45995 8.64076C9.40153 9.57545 9.15559 10.4888 8.73677 11.3265C8.25225 12.2955 8 13.364 8 14.4475V33.5525C8 34.6359 8.25225 35.7045 8.73677 36.6735C9.15559 37.5112 9.40153 38.4245 9.45995 39.3592L9.6 41.6L9.74005 39.3592C9.79847 38.4245 10.0444 37.5112 10.4632 36.6735C10.9478 35.7045 11.2 34.6359 11.2 33.5525V14.4475ZM6.46323 17.7264C6.94775 18.6955 7.2 19.764 7.2 20.8475V27.1525C7.2 28.2359 6.94775 29.3045 6.46323 30.2735C6.04441 31.1112 5.79847 32.0245 5.74005 32.9592L5.6 35.2L5.45995 32.9592C5.40153 32.0245 5.15559 31.1112 4.73677 30.2735C4.25225 29.3045 4 28.2359 4 27.1525V20.8475C4 19.764 4.25225 18.6955 4.73677 17.7264C5.15559 16.8888 5.40153 15.9754 5.45995 15.0408L5.6 12.8L5.74005 15.0408C5.79847 15.9754 6.04441 16.8888 6.46323 17.7264ZM3.19984 24L3.2 24.0475V23.9525L3.19984 24ZM0 24.0475L0.000161422 24C0.00741925 25.0672 0.259327 26.1187 0.736771 27.0735C1.15559 27.9112 1.40153 28.8245 1.45995 29.7592L1.6 32L1.74005 29.7592C1.79847 28.8245 2.04441 27.9112 2.46323 27.0735C2.94067 26.1187 3.19258 25.0672 3.19984 24C3.19258 22.9328 2.94067 21.8813 2.46323 20.9265C2.04441 20.0888 1.79847 19.1755 1.74005 18.2408L1.6 16L1.45995 18.2408C1.40153 19.1755 1.15559 20.0888 0.736771 20.9265C0.259327 21.8813 0.00741927 22.9328 0.000161422 24L0 23.9525V24.0475ZM18.4632 4.92646C18.9478 5.8955 19.2 6.96405 19.2 8.04747V39.9525C19.2 41.036 18.9478 42.1045 18.4632 43.0735C18.0444 43.9112 17.7985 44.8245 17.74 45.7592L17.6 48L17.46 45.7592C17.4015 44.8245 17.1556 43.9112 16.7368 43.0735C16.2522 42.1045 16 41.036 16 39.9525V8.04747C16 6.96405 16.2522 5.8955 16.7368 4.92646C17.1556 4.08882 17.4015 3.17545 17.46 2.24077L17.6 0L17.74 2.24077C17.7985 3.17545 18.0444 4.08882 18.4632 4.92646ZM26.4632 4.92646C26.9478 5.8955 27.2 6.96405 27.2 8.04747V39.9525C27.2 41.036 26.9478 42.1045 26.4632 43.0735C26.0444 43.9112 25.7985 44.8245 25.74 45.7592L25.6 48L25.46 45.7592C25.4015 44.8245 25.1556 43.9112 24.7368 43.0735C24.2522 42.1045 24 41.036 24 39.9525V8.04747C24 6.96405 24.2522 5.8955 24.7368 4.92646C25.1556 4.08882 25.4015 3.17545 25.46 2.24077L25.6 0L25.74 2.24077C25.7985 3.17545 26.0444 4.08882 26.4632 4.92646ZM31.2 11.2475C31.2 10.1641 30.9478 9.09551 30.4632 8.12647C30.0444 7.28883 29.7985 6.37547 29.74 5.44078L29.6 3.20001L29.46 5.44078C29.4015 6.37547 29.1556 7.28883 28.7368 8.12647C28.2522 9.09551 28 10.1641 28 11.2475V36.7525C28 37.836 28.2522 38.9045 28.7368 39.8736C29.1556 40.7112 29.4015 41.6246 29.46 42.5592L29.6 44.8L29.74 42.5592C29.7985 41.6246 30.0444 40.7112 30.4632 39.8736C30.9478 38.9045 31.2 37.836 31.2 36.7525V11.2475ZM34.4632 11.3265C34.9478 12.2955 35.2 13.364 35.2 14.4475V33.5525C35.2 34.6359 34.9478 35.7045 34.4632 36.6735C34.0444 37.5112 33.7985 38.4245 33.74 39.3592L33.6 41.6L33.46 39.3592C33.4015 38.4245 33.1556 37.5112 32.7368 36.6735C32.2523 35.7045 32 34.6359 32 33.5525V14.4475C32 13.364 32.2523 12.2955 32.7368 11.3265C33.1556 10.4888 33.4015 9.57545 33.46 8.64076L33.6 6.39999L33.74 8.64076C33.7985 9.57545 34.0444 10.4888 34.4632 11.3265ZM39.2 20.8475C39.2 19.764 38.9478 18.6955 38.4632 17.7264C38.0444 16.8888 37.7985 15.9754 37.74 15.0408L37.6 12.8L37.46 15.0408C37.4015 15.9754 37.1556 16.8888 36.7368 17.7264C36.2523 18.6955 36 19.764 36 20.8475V27.1525C36 28.2359 36.2523 29.3045 36.7368 30.2735C37.1556 31.1112 37.4015 32.0245 37.46 32.9592L37.6 35.2L37.74 32.9592C37.7985 32.0245 38.0444 31.1112 38.4632 30.2735C38.9478 29.3045 39.2 28.2359 39.2 27.1525V20.8475ZM43.1998 24C43.1999 24.0158 43.2 24.0316 43.2 24.0475V23.9525C43.2 23.9684 43.1999 23.9842 43.1998 24ZM40.0002 24C40.0074 25.0672 40.2593 26.1187 40.7368 27.0735C41.1556 27.9112 41.4015 28.8245 41.46 29.7592L41.6 32L41.74 29.7592C41.7985 28.8245 42.0444 27.9112 42.4632 27.0735C42.9407 26.1187 43.1926 25.0672 43.1998 24C43.1926 22.9328 42.9407 21.8813 42.4632 20.9265C42.0444 20.0888 41.7985 19.1755 41.74 18.2408L41.6 16L41.46 18.2408C41.4015 19.1755 41.1556 20.0888 40.7368 20.9265C40.2593 21.8813 40.0074 22.9328 40.0002 24ZM40.0002 24C40.0001 23.9842 40 23.9684 40 23.9525V24.0475C40 24.0316 40.0001 24.0158 40.0002 24Z" class="ccustom" fill="#394149"></path> </svg>`,
+  `<svg id="logo-64" width="80" height="80" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="ccustom" d="M27.5308 40.1395C27.5757 35.5502 26.4122 31.8182 24.9322 31.8037C23.4521 31.7893 22.2159 35.4979 22.1711 40.0871C22.1262 44.6764 23.2897 48.4085 24.7697 48.4229C26.2498 48.4374 27.486 44.7288 27.5308 40.1395Z" fill="black"></path><path class="ccustom" d="M18.947 39.0972C21.4661 35.2608 22.5052 31.4922 21.268 30.6798C20.0307 29.8674 16.9856 32.3188 14.4666 36.1552C11.9475 39.9916 10.9084 43.7601 12.1456 44.5726C13.3829 45.385 16.4279 42.9336 18.947 39.0972Z" fill="black"></path><path class="ccustom" d="M12.2792 33.593C16.4726 31.7278 19.3843 29.1194 18.7827 27.767C18.1812 26.4146 14.2942 26.8304 10.1008 28.6957C5.90744 30.5609 2.99571 33.1693 3.59726 34.5217C4.1988 35.8741 8.08584 35.4583 12.2792 33.593Z" fill="black"></path><path class="ccustom" d="M18.2794 23.9745C18.5046 22.5116 15.0099 20.7597 10.4739 20.0615C5.93778 19.3633 2.07804 19.9833 1.85288 21.4462C1.62772 22.9091 5.1224 24.6609 9.65848 25.3591C14.1945 26.0573 18.0543 25.4373 18.2794 23.9745Z" fill="black"></path><path class="ccustom" d="M19.908 20.4895C20.8882 19.3805 18.895 16.0176 15.4561 12.9783C12.0172 9.93902 8.43482 8.37426 7.45464 9.48332C6.47446 10.5924 8.46766 13.9553 11.9066 16.9946C15.3455 20.0339 18.9279 21.5986 19.908 20.4895Z" fill="black"></path><path class="ccustom" d="M23.1514 18.4528C24.5756 18.0498 24.7171 14.1431 23.4675 9.72704C22.2179 5.31095 20.0503 2.05771 18.6261 2.46072C17.2019 2.86373 17.0604 6.77037 18.31 11.1865C19.5596 15.6025 21.7272 18.8558 23.1514 18.4528Z" fill="black"></path><path class="ccustom" d="M31.9584 11.3239C33.2949 6.9333 33.2305 3.02462 31.8145 2.59361C30.3985 2.16259 28.1672 5.37245 26.8307 9.76304C25.4943 14.1536 25.5587 18.0623 26.9747 18.4933C28.3907 18.9243 30.622 15.7145 31.9584 11.3239Z" fill="black"></path><path class="ccustom" d="M38.2514 17.2565C41.7491 14.285 43.8077 10.9617 42.8493 9.83373C41.891 8.70573 38.2787 10.2002 34.7811 13.1716C31.2834 16.1431 29.2249 19.4664 30.1832 20.5944C31.1415 21.7224 34.7538 20.228 38.2514 17.2565Z" fill="black"></path><path class="ccustom" d="M40.3322 25.6519C44.8812 25.0433 48.4097 23.3607 48.2134 21.8936C48.0172 20.4266 44.1704 19.7307 39.6214 20.3392C35.0725 20.9478 31.5439 22.6304 31.7402 24.0975C31.9365 25.5645 35.7832 26.2605 40.3322 25.6519Z" fill="black"></path><path class="ccustom" d="M46.2004 34.941C46.8285 33.6008 43.9688 30.9355 39.813 28.9879C35.6573 27.0403 31.7792 26.548 31.1511 27.8882C30.523 29.2285 33.3827 31.8938 37.5385 33.8414C41.6942 35.7889 45.5723 36.2813 46.2004 34.941Z" fill="black"></path><path class="ccustom" d="M37.4589 44.8299C38.7119 44.0421 37.7473 40.2537 35.3044 36.3684C32.8615 32.4831 29.8653 29.9722 28.6123 30.76C27.3593 31.5478 28.3239 35.3362 30.7668 39.2215C33.2097 43.1068 36.2059 45.6178 37.4589 44.8299Z" fill="black"></path></svg>`,
 ];
 
 // Helper function to create blob from SVG string
@@ -58,6 +89,36 @@ export const seedIndustries = internalMutation({
   handler: async (ctx: MutationCtx) => {
     const industries = [
       // Technology & Software
+      {
+        name: "Oil & Gas",
+        description:
+          "Petroleum exploration, production, refining, and energy services",
+      },
+      {
+        name: "Islamic Banking",
+        description:
+          "Sharia-compliant banking, Islamic finance, and ethical investment",
+      },
+      {
+        name: "Medical Services",
+        description:
+          "Hospitals, clinics, medical centers, and healthcare delivery",
+      },
+      {
+        name: "Tourism & Hospitality",
+        description:
+          "Hotels, resorts, travel services, and hospitality management",
+      },
+      {
+        name: "Higher Education",
+        description:
+          "Universities, colleges, academic research, and educational institutions",
+      },
+      {
+        name: "Steel & Metals",
+        description:
+          "Metal production, steel manufacturing, and industrial materials",
+      },
       {
         name: "Software Development",
         description: "Custom software solutions, web and mobile applications",
@@ -560,67 +621,288 @@ export const seedCompanies = internalMutation({
       throw new Error("No industries found. Please seed industries first.");
     }
 
-    const techIndustry = industries.find(
+    const softwareDevelopmentIndustry = industries.find(
       (i) => i.name === "Software Development"
     )?._id;
-    const financeIndustry = industries.find((i) => i.name === "Fintech")?._id;
-    const healthcareIndustry = industries.find(
+
+    const cloudComputingIndustry = industries.find(
+      (i) => i.name === "Cloud Computing"
+    )?._id;
+
+    const fintechIndustry = industries.find((i) => i.name === "Fintech")?._id;
+
+    const investmentBankingIndustry = industries.find(
+      (i) => i.name === "Investment Banking"
+    )?._id;
+
+    const islamicBankingIndustry = industries.find(
+      (i) => i.name === "Islamic Banking"
+    )?._id;
+
+    const medicalServicesIndustry = industries.find(
+      (i) => i.name === "Medical Services"
+    )?._id;
+
+    const healthcareTechnologyIndustry = industries.find(
       (i) => i.name === "Healthcare Technology"
     )?._id;
+
+    const pharmaceuticalsIndustry = industries.find(
+      (i) => i.name === "Pharmaceuticals"
+    )?._id;
+
     const ecommerceIndustry = industries.find(
       (i) => i.name === "E-commerce"
     )?._id;
 
+    const oilGasIndustry = industries.find((i) => i.name === "Oil & Gas")?._id;
+
+    const constructionIndustry = industries.find(
+      (i) => i.name === "Construction"
+    )?._id;
+
+    const realEstateIndustry = industries.find(
+      (i) => i.name === "Real Estate"
+    )?._id;
+
+    const higherEducationIndustry = industries.find(
+      (i) => i.name === "Higher Education"
+    )?._id;
+
+    const educationTechnologyIndustry = industries.find(
+      (i) => i.name === "Education Technology"
+    )?._id;
+
+    const steelMetalsIndustry = industries.find(
+      (i) => i.name === "Steel & Metals"
+    )?._id;
+
+    const automotiveIndustry = industries.find(
+      (i) => i.name === "Automotive"
+    )?._id;
+
+    const tourismHospitalityIndustry = industries.find(
+      (i) => i.name === "Tourism & Hospitality"
+    )?._id;
+
     const companies = [
+      // Technology Companies
       {
-        name: "TechCorp Solutions",
+        name: "Cairo Tech Hub",
         description:
-          "Leading software development company specializing in enterprise solutions",
-        website: "https://techcorp.com",
-        industryId: techIndustry,
+          "Leading software development company specializing in fintech and e-commerce solutions for MENA region",
+        website: "https://cairotechhub.com",
+        industryId: softwareDevelopmentIndustry,
         size: "201-500",
-        location: "San Francisco, CA",
-        foundedYear: 2015,
+        location: "New Cairo, Egypt",
+        foundedYear: 2016,
       },
       {
-        name: "FinanceFlow",
-        description: "Modern fintech company revolutionizing digital payments",
-        website: "https://financeflow.com",
-        industryId: financeIndustry,
-        size: "51-200",
-        location: "New York, NY",
+        name: "Emirates Digital Solutions",
+        description:
+          "Cloud computing and digital transformation services across the Gulf region",
+        website: "https://emiratesdigital.ae",
+        industryId: cloudComputingIndustry,
+        size: "101-200",
+        location: "Dubai, UAE",
         foundedYear: 2018,
       },
       {
-        name: "HealthTech Innovations",
+        name: "Riyadh Software House",
+        description: "Enterprise software solutions and mobile app development",
+        website: "https://riyadhsoftware.sa",
+        industryId: softwareDevelopmentIndustry,
+        size: "51-200",
+        location: "Riyadh, Saudi Arabia",
+        foundedYear: 2017,
+      },
+
+      // Finance & Banking
+      {
+        name: "MENA Capital Bank",
         description:
-          "Healthcare technology solutions for modern medical practices",
-        website: "https://healthtech-innovations.com",
-        industryId: healthcareIndustry,
-        size: "11-50",
-        location: "Boston, MA",
+          "Leading investment bank providing corporate and retail banking services",
+        website: "https://menacapital.com",
+        industryId: investmentBankingIndustry,
+        size: "1000+",
+        location: "Cairo, Egypt",
+        foundedYear: 2005,
+      },
+      {
+        name: "Gulf Financial Services",
+        description: "Islamic banking and financial advisory services",
+        website: "https://gulffinancial.ae",
+        industryId: islamicBankingIndustry,
+        size: "501-1000",
+        location: "Abu Dhabi, UAE",
+        foundedYear: 2010,
+      },
+      {
+        name: "PayMENA",
+        description:
+          "Digital payment solutions and fintech services for the Middle East",
+        website: "https://paymena.com",
+        industryId: fintechIndustry,
+        size: "51-200",
+        location: "Amman, Jordan",
+        foundedYear: 2019,
+      },
+
+      // Healthcare
+      {
+        name: "Cairo Medical Center",
+        description:
+          "Premier healthcare facility with advanced medical technology",
+        website: "https://cairomedical.com",
+        industryId: medicalServicesIndustry,
+        size: "501-1000",
+        location: "Cairo, Egypt",
+        foundedYear: 2008,
+      },
+      {
+        name: "Gulf Health Technologies",
+        description: "Healthcare IT solutions and telemedicine platforms",
+        website: "https://gulfhealth.ae",
+        industryId: healthcareTechnologyIndustry,
+        size: "101-200",
+        location: "Dubai, UAE",
         foundedYear: 2020,
       },
       {
-        name: "ShopSmart",
-        description: "AI-powered e-commerce platform for small businesses",
-        website: "https://shopsmart.com",
+        name: "Pharma Plus Egypt",
+        description: "Pharmaceutical distribution and medical supplies",
+        website: "https://pharmaplus.eg",
+        industryId: pharmaceuticalsIndustry,
+        size: "201-500",
+        location: "Alexandria, Egypt",
+        foundedYear: 2012,
+      },
+
+      // E-commerce & Retail
+      {
+        name: "Souq Al-Sharq",
+        description:
+          "Leading e-commerce marketplace for electronics and fashion",
+        website: "https://souqalsharq.com",
         industryId: ecommerceIndustry,
-        size: "101-200",
-        location: "Austin, TX",
-        foundedYear: 2017,
+        size: "201-500",
+        location: "Cairo, Egypt",
+        foundedYear: 2015,
       },
       {
-        name: "DataDrive Analytics",
-        description: "Big data analytics and machine learning solutions",
-        website: "https://datadrive.com",
-        industryId: techIndustry,
+        name: "Dubai Mall Online",
+        description: "Premium online shopping platform for luxury goods",
+        website: "https://dubaimaIlonline.ae",
+        industryId: ecommerceIndustry,
+        size: "101-200",
+        location: "Dubai, UAE",
+        foundedYear: 2018,
+      },
+
+      // Oil & Gas
+      {
+        name: "Arabian Petroleum Corp",
+        description:
+          "Oil exploration and production company serving the Gulf region",
+        website: "https://arabianpetroleum.sa",
+        industryId: oilGasIndustry,
+        size: "1000+",
+        location: "Dhahran, Saudi Arabia",
+        foundedYear: 1995,
+      },
+      {
+        name: "Egypt Gas Solutions",
+        description: "Natural gas processing and distribution services",
+        website: "https://egyptgas.com",
+        industryId: oilGasIndustry,
+        size: "501-1000",
+        location: "Cairo, Egypt",
+        foundedYear: 2003,
+      },
+
+      // Construction & Real Estate
+      {
+        name: "MENA Construction Group",
+        description:
+          "Large-scale infrastructure and residential development projects",
+        website: "https://menaconstruction.com",
+        industryId: constructionIndustry,
+        size: "1000+",
+        location: "New Cairo, Egypt",
+        foundedYear: 2000,
+      },
+      {
+        name: "Emirates Properties",
+        description: "Luxury real estate development and property management",
+        website: "https://emiratesproperties.ae",
+        industryId: realEstateIndustry,
+        size: "201-500",
+        location: "Dubai, UAE",
+        foundedYear: 2007,
+      },
+
+      // Education
+      {
+        name: "Cairo International University",
+        description:
+          "Leading private university offering undergraduate and graduate programs",
+        website: "https://ciu.edu.eg",
+        industryId: higherEducationIndustry,
+        size: "501-1000",
+        location: "Cairo, Egypt",
+        foundedYear: 1996,
+      },
+      {
+        name: "Gulf Education Services",
+        description: "Educational technology and online learning platforms",
+        website: "https://gulfeducation.ae",
+        industryId: educationTechnologyIndustry,
         size: "51-200",
-        location: "Seattle, WA",
+        location: "Dubai, UAE",
         foundedYear: 2019,
       },
-    ];
 
+      // Manufacturing
+      {
+        name: "Egyptian Steel Industries",
+        description:
+          "Steel production and metal fabrication for construction industry",
+        website: "https://egyptiansteel.com",
+        industryId: steelMetalsIndustry,
+        size: "1000+",
+        location: "Helwan, Egypt",
+        foundedYear: 1985,
+      },
+      {
+        name: "Gulf Automotive Parts",
+        description: "Automotive parts manufacturing and distribution",
+        website: "https://gulfautoparts.ae",
+        industryId: automotiveIndustry,
+        size: "201-500",
+        location: "Sharjah, UAE",
+        foundedYear: 2010,
+      },
+
+      // Tourism & Hospitality
+      {
+        name: "Red Sea Resorts",
+        description: "Luxury resort chain along the Egyptian Red Sea coast",
+        website: "https://redseaResorts.com",
+        industryId: tourismHospitalityIndustry,
+        size: "501-1000",
+        location: "Hurghada, Egypt",
+        foundedYear: 2005,
+      },
+      {
+        name: "Arabian Hospitality Group",
+        description: "Hotel management and tourism services across the Gulf",
+        website: "https://arabianhospitality.ae",
+        industryId: tourismHospitalityIndustry,
+        size: "1000+",
+        location: "Dubai, UAE",
+        foundedYear: 1998,
+      },
+    ];
     const companyIds = [];
     for (const company of companies) {
       const id = await ctx.db.insert("companies", company);
@@ -652,29 +934,30 @@ export const seedJobs = internalMutation({
     const posterUserId = users[0]._id; // Use first user as job poster
 
     const jobs = [
+      // Technology Jobs
       {
         title: "Senior Full Stack Developer",
         description:
-          "We're looking for an experienced full stack developer to join our growing team. You'll work on cutting-edge web applications using React, Node.js, and modern cloud technologies.",
+          "Join our team to build cutting-edge fintech solutions for the MENA region using React, Node.js, and cloud technologies.",
         companyId: companies[0]._id,
-        location: "San Francisco, CA",
+        location: "New Cairo, Egypt",
         type: "full-time",
         salary: {
-          min: 120000,
-          max: 180000,
-          currency: "USD",
+          min: 180000,
+          max: 300000,
+          currency: "EGP",
         },
         requirements: [
-          "5+ years of experience with React and Node.js",
-          "Experience with cloud platforms (AWS, GCP, or Azure)",
-          "Strong understanding of database design",
-          "Experience with CI/CD pipelines",
+          "5+ years experience with React and Node.js",
+          "Experience with AWS or Azure",
+          "Strong database design skills",
+          "Fluency in Arabic and English",
         ],
         benefits: [
           "Health insurance",
-          "401k matching",
-          "Flexible PTO",
-          "Remote work options",
+          "Annual bonus",
+          "Flexible working hours",
+          "Professional development budget",
         ],
         postedBy: posterUserId,
         isActive: true,
@@ -682,26 +965,774 @@ export const seedJobs = internalMutation({
         applicationDeadline: Date.now() + 30 * 24 * 60 * 60 * 1000,
       },
       {
-        title: "Product Manager",
+        title: "DevOps Engineer",
         description:
-          "Join our product team to drive the development of innovative fintech solutions.",
+          "Lead our cloud infrastructure and deployment automation across multiple environments.",
         companyId: companies[1]._id,
-        location: "New York, NY",
+        location: "Dubai, UAE",
         type: "full-time",
         salary: {
-          min: 110000,
-          max: 160000,
-          currency: "USD",
+          min: 15000,
+          max: 25000,
+          currency: "AED",
         },
         requirements: [
-          "3+ years of product management experience",
-          "Experience in fintech or financial services",
-          "Strong analytical and communication skills",
+          "3+ years DevOps experience",
+          "Kubernetes and Docker expertise",
+          "AWS/Azure certifications preferred",
+          "Experience with CI/CD pipelines",
+        ],
+        benefits: [
+          "Health insurance",
+          "Housing allowance",
+          "Annual flight tickets",
+          "Performance bonuses",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Mobile App Developer",
+        description:
+          "Develop innovative mobile applications for iOS and Android platforms.",
+        companyId: companies[2]._id,
+        location: "Riyadh, Saudi Arabia",
+        type: "full-time",
+        salary: {
+          min: 8000,
+          max: 15000,
+          currency: "SAR",
+        },
+        requirements: [
+          "Flutter or React Native experience",
+          "3+ years mobile development",
+          "App Store/Play Store publishing experience",
+          "Arabic language skills preferred",
+        ],
+        benefits: [
+          "Medical insurance",
+          "Transportation allowance",
+          "Annual leave",
+          "Training opportunities",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+
+      // Finance Jobs
+      {
+        title: "Investment Banking Analyst",
+        description:
+          "Analyze investment opportunities and provide financial advisory services to corporate clients.",
+        companyId: companies[3]._id,
+        location: "Cairo, Egypt",
+        type: "full-time",
+        salary: {
+          min: 120000,
+          max: 200000,
+          currency: "EGP",
+        },
+        requirements: [
+          "Bachelor's in Finance or Economics",
+          "2+ years investment banking experience",
+          "CFA certification preferred",
+          "Strong analytical skills",
+        ],
+        benefits: [
+          "Performance bonuses",
+          "Health insurance",
+          "Professional certifications support",
+          "Career advancement opportunities",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Islamic Banking Specialist",
+        description:
+          "Develop and manage Sharia-compliant banking products and services.",
+        companyId: companies[4]._id,
+        location: "Abu Dhabi, UAE",
+        type: "full-time",
+        salary: {
+          min: 12000,
+          max: 20000,
+          currency: "AED",
+        },
+        requirements: [
+          "Islamic Finance certification",
+          "5+ years banking experience",
+          "Knowledge of Sharia principles",
+          "Arabic and English fluency",
         ],
         benefits: [
           "Comprehensive health coverage",
+          "Housing allowance",
+          "Education allowance for children",
+          "Annual performance bonus",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Fintech Product Manager",
+        description:
+          "Lead product development for digital payment solutions in the MENA market.",
+        companyId: companies[5]._id,
+        location: "Amman, Jordan",
+        type: "full-time",
+        salary: {
+          min: 1200,
+          max: 2000,
+          currency: "JOD",
+        },
+        requirements: [
+          "3+ years product management experience",
+          "Fintech or payments industry background",
+          "Agile methodology expertise",
+          "Market research skills",
+        ],
+        benefits: [
+          "Health insurance",
           "Stock options",
+          "Flexible work arrangements",
           "Professional development budget",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+
+      // Healthcare Jobs
+      {
+        title: "Consultant Cardiologist",
+        description:
+          "Provide specialized cardiac care and lead our cardiology department.",
+        companyId: companies[6]._id,
+        location: "Cairo, Egypt",
+        type: "full-time",
+        salary: {
+          min: 400000,
+          max: 600000,
+          currency: "EGP",
+        },
+        requirements: [
+          "MD with Cardiology specialization",
+          "Board certification required",
+          "10+ years clinical experience",
+          "Research publications preferred",
+        ],
+        benefits: [
+          "Comprehensive medical coverage",
+          "Research funding support",
+          "Conference attendance allowance",
+          "Continuing education support",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Healthcare IT Specialist",
+        description:
+          "Implement and maintain healthcare information systems and telemedicine platforms.",
+        companyId: companies[7]._id,
+        location: "Dubai, UAE",
+        type: "full-time",
+        salary: {
+          min: 10000,
+          max: 18000,
+          currency: "AED",
+        },
+        requirements: [
+          "Healthcare IT certification",
+          "Experience with EMR systems",
+          "HIPAA compliance knowledge",
+          "3+ years healthcare technology experience",
+        ],
+        benefits: [
+          "Health insurance",
+          "Visa sponsorship",
+          "Annual leave",
+          "Technology training budget",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Pharmacist",
+        description:
+          "Manage pharmaceutical operations and provide medication consultation services.",
+        companyId: companies[8]._id,
+        location: "Alexandria, Egypt",
+        type: "full-time",
+        salary: {
+          min: 80000,
+          max: 120000,
+          currency: "EGP",
+        },
+        requirements: [
+          "PharmD degree",
+          "Licensed pharmacist in Egypt",
+          "2+ years retail pharmacy experience",
+          "Customer service skills",
+        ],
+        benefits: [
+          "Health insurance",
+          "Annual bonus",
+          "Professional development opportunities",
+          "Employee discounts",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+
+      // E-commerce Jobs
+      {
+        title: "E-commerce Manager",
+        description:
+          "Lead our online marketplace operations and drive digital sales growth.",
+        companyId: companies[9]._id,
+        location: "Cairo, Egypt",
+        type: "full-time",
+        salary: {
+          min: 100000,
+          max: 160000,
+          currency: "EGP",
+        },
+        requirements: [
+          "3+ years e-commerce experience",
+          "Digital marketing expertise",
+          "Data analytics skills",
+          "Arabic and English proficiency",
+        ],
+        benefits: [
+          "Performance bonuses",
+          "Health insurance",
+          "Flexible working hours",
+          "Employee purchase discounts",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Digital Marketing Specialist",
+        description:
+          "Develop and execute digital marketing campaigns for luxury e-commerce platform.",
+        companyId: companies[10]._id,
+        location: "Dubai, UAE",
+        type: "full-time",
+        salary: {
+          min: 8000,
+          max: 14000,
+          currency: "AED",
+        },
+        requirements: [
+          "Digital marketing certification",
+          "Google Ads and Facebook Ads experience",
+          "SEO/SEM expertise",
+          "Creative content development skills",
+        ],
+        benefits: [
+          "Health insurance",
+          "Marketing tools budget",
+          "Conference attendance",
+          "Career growth opportunities",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+
+      // Oil & Gas Jobs
+      {
+        title: "Petroleum Engineer",
+        description:
+          "Lead oil exploration and production optimization projects in the Gulf region.",
+        companyId: companies[11]._id,
+        location: "Dhahran, Saudi Arabia",
+        type: "full-time",
+        salary: {
+          min: 18000,
+          max: 30000,
+          currency: "SAR",
+        },
+        requirements: [
+          "Petroleum Engineering degree",
+          "5+ years oil industry experience",
+          "Reservoir simulation software proficiency",
+          "Safety certifications required",
+        ],
+        benefits: [
+          "Housing allowance",
+          "Transportation provided",
+          "Health insurance for family",
+          "Annual leave with flights",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Process Safety Engineer",
+        description:
+          "Ensure safety compliance and risk management in gas processing facilities.",
+        companyId: companies[12]._id,
+        location: "Cairo, Egypt",
+        type: "full-time",
+        salary: {
+          min: 150000,
+          max: 250000,
+          currency: "EGP",
+        },
+        requirements: [
+          "Chemical/Process Engineering degree",
+          "HAZOP and risk assessment experience",
+          "Safety management systems knowledge",
+          "3+ years process safety experience",
+        ],
+        benefits: [
+          "Health insurance",
+          "Safety training programs",
+          "Performance bonuses",
+          "Professional certifications support",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+
+      // Construction Jobs
+      {
+        title: "Project Manager - Infrastructure",
+        description:
+          "Manage large-scale infrastructure development projects across Egypt.",
+        companyId: companies[13]._id,
+        location: "New Cairo, Egypt",
+        type: "full-time",
+        salary: {
+          min: 200000,
+          max: 350000,
+          currency: "EGP",
+        },
+        requirements: [
+          "PMP certification required",
+          "10+ years construction project management",
+          "Infrastructure projects experience",
+          "Team leadership skills",
+        ],
+        benefits: [
+          "Project completion bonuses",
+          "Health insurance",
+          "Company car",
+          "Professional development support",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Real Estate Sales Manager",
+        description:
+          "Lead luxury property sales team and develop client relationships.",
+        companyId: companies[14]._id,
+        location: "Dubai, UAE",
+        type: "full-time",
+        salary: {
+          min: 12000,
+          max: 25000,
+          currency: "AED",
+        },
+        requirements: [
+          "Real estate license in UAE",
+          "5+ years luxury property sales",
+          "Client relationship management",
+          "Multilingual abilities preferred",
+        ],
+        benefits: [
+          "Commission structure",
+          "Health insurance",
+          "Company car allowance",
+          "International training opportunities",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+
+      // Education Jobs
+      {
+        title: "Computer Science Professor",
+        description:
+          "Teach undergraduate and graduate computer science courses and conduct research.",
+        companyId: companies[15]._id,
+        location: "Cairo, Egypt",
+        type: "full-time",
+        salary: {
+          min: 120000,
+          max: 200000,
+          currency: "EGP",
+        },
+        requirements: [
+          "PhD in Computer Science",
+          "Research publications record",
+          "Teaching experience required",
+          "Grant writing experience preferred",
+        ],
+        benefits: [
+          "Research funding support",
+          "Sabbatical opportunities",
+          "Health insurance",
+          "Conference travel budget",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "EdTech Product Designer",
+        description:
+          "Design user-friendly educational technology platforms and learning experiences.",
+        companyId: companies[16]._id,
+        location: "Dubai, UAE",
+        type: "full-time",
+        salary: {
+          min: 9000,
+          max: 16000,
+          currency: "AED",
+        },
+        requirements: [
+          "UX/UI design experience",
+          "Educational technology background",
+          "Figma/Sketch proficiency",
+          "User research experience",
+        ],
+        benefits: [
+          "Health insurance",
+          "Design tools budget",
+          "Flexible working arrangements",
+          "Learning and development budget",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+
+      // Manufacturing Jobs
+      {
+        title: "Production Manager",
+        description:
+          "Oversee steel production operations and ensure quality control standards.",
+        companyId: companies[17]._id,
+        location: "Helwan, Egypt",
+        type: "full-time",
+        salary: {
+          min: 140000,
+          max: 220000,
+          currency: "EGP",
+        },
+        requirements: [
+          "Mechanical/Industrial Engineering degree",
+          "7+ years manufacturing experience",
+          "Lean manufacturing knowledge",
+          "Team management skills",
+        ],
+        benefits: [
+          "Production bonuses",
+          "Health insurance",
+          "Transportation provided",
+          "Safety training programs",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Quality Control Engineer",
+        description:
+          "Ensure automotive parts meet international quality standards and specifications.",
+        companyId: companies[18]._id,
+        location: "Sharjah, UAE",
+        type: "full-time",
+        salary: {
+          min: 7000,
+          max: 12000,
+          currency: "AED",
+        },
+        requirements: [
+          "Mechanical Engineering degree",
+          "ISO 9001 certification",
+          "Automotive industry experience",
+          "Quality management systems knowledge",
+        ],
+        benefits: [
+          "Health insurance",
+          "Annual performance bonus",
+          "Professional certifications support",
+          "Career advancement opportunities",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+
+      // Tourism Jobs
+      {
+        title: "Resort Operations Manager",
+        description:
+          "Manage daily operations of luxury Red Sea resort and ensure exceptional guest experience.",
+        companyId: companies[19]._id,
+        location: "Hurghada, Egypt",
+        type: "full-time",
+        salary: {
+          min: 100000,
+          max: 180000,
+          currency: "EGP",
+        },
+        requirements: [
+          "Hospitality Management degree",
+          "5+ years resort management experience",
+          "Multilingual capabilities",
+          "Customer service excellence",
+        ],
+        benefits: [
+          "Accommodation provided",
+          "Meals included",
+          "Health insurance",
+          "International training opportunities",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Hotel Revenue Manager",
+        description:
+          "Optimize pricing strategies and revenue management across hotel portfolio.",
+        companyId: companies[20]._id,
+        location: "Dubai, UAE",
+        type: "full-time",
+        salary: {
+          min: 11000,
+          max: 18000,
+          currency: "AED",
+        },
+        requirements: [
+          "Revenue management certification",
+          "Hotel industry experience",
+          "Data analytics skills",
+          "Pricing strategy expertise",
+        ],
+        benefits: [
+          "Performance bonuses",
+          "Health insurance",
+          "Hotel discounts worldwide",
+          "Professional development budget",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+
+      // Additional Cross-Industry Jobs
+      {
+        title: "Data Scientist",
+        description:
+          "Analyze large datasets to drive business insights and machine learning solutions.",
+        companyId: companies[0]._id,
+        location: "New Cairo, Egypt",
+        type: "full-time",
+        salary: {
+          min: 160000,
+          max: 280000,
+          currency: "EGP",
+        },
+        requirements: [
+          "Master's in Data Science or related field",
+          "Python/R programming expertise",
+          "Machine learning frameworks experience",
+          "Statistical analysis skills",
+        ],
+        benefits: [
+          "Health insurance",
+          "Research budget",
+          "Conference attendance",
+          "Flexible working hours",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Business Development Manager",
+        description:
+          "Identify and develop new business opportunities across the MENA region.",
+        companyId: companies[1]._id,
+        location: "Dubai, UAE",
+        type: "full-time",
+        salary: {
+          min: 13000,
+          max: 22000,
+          currency: "AED",
+        },
+        requirements: [
+          "MBA or Business degree",
+          "5+ years business development experience",
+          "MENA market knowledge",
+          "Negotiation and presentation skills",
+        ],
+        benefits: [
+          "Commission structure",
+          "Health insurance",
+          "Travel allowance",
+          "Performance bonuses",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "HR Business Partner",
+        description:
+          "Partner with business leaders to develop HR strategies and support organizational growth.",
+        companyId: companies[3]._id,
+        location: "Cairo, Egypt",
+        type: "full-time",
+        salary: {
+          min: 90000,
+          max: 150000,
+          currency: "EGP",
+        },
+        requirements: [
+          "HR certification (SHRM/HRCI)",
+          "5+ years HR business partnering",
+          "Change management experience",
+          "Employment law knowledge",
+        ],
+        benefits: [
+          "Health insurance",
+          "Professional development budget",
+          "Flexible working arrangements",
+          "Annual performance bonus",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Supply Chain Manager",
+        description:
+          "Optimize supply chain operations and vendor relationships across multiple markets.",
+        companyId: companies[9]._id,
+        location: "Cairo, Egypt",
+        type: "full-time",
+        salary: {
+          min: 120000,
+          max: 200000,
+          currency: "EGP",
+        },
+        requirements: [
+          "Supply Chain Management degree",
+          "APICS certification preferred",
+          "ERP systems experience",
+          "Vendor management skills",
+        ],
+        benefits: [
+          "Health insurance",
+          "Performance bonuses",
+          "Professional certifications support",
+          "Career advancement opportunities",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Cybersecurity Analyst",
+        description:
+          "Protect organizational assets through security monitoring and incident response.",
+        companyId: companies[4]._id,
+        location: "Abu Dhabi, UAE",
+        type: "full-time",
+        salary: {
+          min: 12000,
+          max: 20000,
+          currency: "AED",
+        },
+        requirements: [
+          "Cybersecurity certification (CISSP/CEH)",
+          "3+ years security analysis experience",
+          "Incident response experience",
+          "Security tools proficiency",
+        ],
+        benefits: [
+          "Health insurance",
+          "Security training budget",
+          "Certification reimbursement",
+          "Performance bonuses",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Content Marketing Manager",
+        description:
+          "Develop and execute content marketing strategies for Arabic and English audiences.",
+        companyId: companies[10]._id,
+        location: "Dubai, UAE",
+        type: "full-time",
+        salary: {
+          min: 9000,
+          max: 15000,
+          currency: "AED",
+        },
+        requirements: [
+          "Marketing degree or equivalent",
+          "Content marketing experience",
+          "Arabic and English copywriting",
+          "Social media management skills",
+        ],
+        benefits: [
+          "Health insurance",
+          "Creative tools budget",
+          "Flexible working hours",
+          "Professional development opportunities",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Financial Analyst",
+        description:
+          "Provide financial analysis and reporting to support strategic business decisions.",
+        companyId: companies[11]._id,
+        location: "Dhahran, Saudi Arabia",
+        type: "full-time",
+        salary: {
+          min: 10000,
+          max: 16000,
+          currency: "SAR",
+        },
+        requirements: [
+          "Finance or Accounting degree",
+          "CFA or CPA certification preferred",
+          "Financial modeling expertise",
+          "Advanced Excel skills",
+        ],
+        benefits: [
+          "Health insurance",
+          "Housing allowance",
+          "Professional certifications support",
+          "Annual performance bonus",
         ],
         postedBy: posterUserId,
         isActive: true,
@@ -710,31 +1741,60 @@ export const seedJobs = internalMutation({
       {
         title: "UX/UI Designer",
         description:
-          "Create beautiful and intuitive user experiences for our healthcare platform.",
-        companyId: companies[2]._id,
-        location: "Boston, MA",
+          "Create intuitive user experiences for healthcare and fintech applications.",
+        companyId: companies[7]._id,
+        location: "Dubai, UAE",
         type: "full-time",
         salary: {
-          min: 80000,
-          max: 120000,
-          currency: "USD",
+          min: 8000,
+          max: 14000,
+          currency: "AED",
         },
         requirements: [
-          "3+ years of UX/UI design experience",
-          "Proficiency in Figma, Sketch, or similar tools",
-          "Experience with user research and testing",
+          "Design degree or equivalent",
+          "3+ years UX/UI experience",
+          "Figma and Adobe Creative Suite",
+          "User research and testing experience",
         ],
         benefits: [
           "Health insurance",
-          "Flexible hours",
-          "Design conference budget",
+          "Design tools and software budget",
+          "Creative conference attendance",
+          "Flexible working arrangements",
+        ],
+        postedBy: posterUserId,
+        isActive: true,
+        createdAt: Date.now(),
+      },
+      {
+        title: "Sales Director",
+        description:
+          "Lead regional sales team and drive revenue growth across Middle East markets.",
+        companyId: companies[18]._id,
+        location: "Sharjah, UAE",
+        type: "full-time",
+        salary: {
+          min: 18000,
+          max: 30000,
+          currency: "AED",
+        },
+        requirements: [
+          "10+ years sales leadership experience",
+          "Automotive industry background",
+          "Team management skills",
+          "Regional market knowledge",
+        ],
+        benefits: [
+          "Commission structure",
+          "Company car",
+          "Health insurance for family",
+          "International sales training",
         ],
         postedBy: posterUserId,
         isActive: true,
         createdAt: Date.now(),
       },
     ];
-
     const jobIds = [];
     for (const job of jobs) {
       const id = await ctx.db.insert("jobs", job);
@@ -908,6 +1968,32 @@ export const clearAllTables = internalMutation({
   args: {},
   handler: async (ctx: MutationCtx) => {
     // Clear in reverse dependency order
+
+    // const authAccounts = await ctx.db.query("authAccounts").collect();
+    // for (const aa of authAccounts) {
+    //   await ctx.db.delete(aa._id);
+    // }
+
+    // const authRateLimits = await ctx.db.query("authRateLimits").collect();
+    // for (const arl of authRateLimits) {
+    //   await ctx.db.delete(arl._id);
+    // }
+
+    // const authRefreshTokens = await ctx.db.query("authRefreshTokens").collect();
+    // for (const art of authRefreshTokens) {
+    //   await ctx.db.delete(art._id);
+    // }
+
+    // const authSessions = await ctx.db.query("authSessions").collect();
+    // for (const as of authSessions) {
+    //   await ctx.db.delete(as._id);
+    // }
+
+    // const users = await ctx.db.query("users").collect();
+    // for (const user of users) {
+    //   await ctx.db.delete(user._id);
+    // }
+
     const experiences = await ctx.db.query("experiences").collect();
     for (const exp of experiences) {
       await ctx.db.delete(exp._id);
@@ -921,6 +2007,16 @@ export const clearAllTables = internalMutation({
     const userSkills = await ctx.db.query("userSkills").collect();
     for (const us of userSkills) {
       await ctx.db.delete(us._id);
+    }
+
+    const savedJobs = await ctx.db.query("savedJobs").collect();
+    for (const sj of savedJobs) {
+      await ctx.db.delete(sj._id);
+    }
+
+    const userIndustries = await ctx.db.query("userIndustries").collect();
+    for (const ui of userIndustries) {
+      await ctx.db.delete(ui._id);
     }
 
     const jobApplications = await ctx.db.query("jobApplications").collect();
@@ -957,14 +2053,6 @@ export const clearAllTables = internalMutation({
   },
 });
 
-// // Run in order due to dependencies
-// await ctx.runMutation(internal.seed.seedIndustries, {});
-// await ctx.runMutation(internal.seed.seedSkills, {});
-// await ctx.runMutation(internal.seed.seedCompanies, {});
-// await ctx.runMutation(internal.seed.seedJobs, {});
-// await ctx.runMutation(internal.seed.seedUserSkills, {});
-// await ctx.runMutation(internal.seed.seedJobSkills, {});
-// await ctx.runMutation(internal.seed.seedExperiences, {});
 export const runAll = internalMutation({
   args: {},
   handler: async (ctx: MutationCtx) => {

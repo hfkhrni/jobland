@@ -187,11 +187,12 @@ export const addUserIndustry = mutation({
       throw new ConvexError("You already have this industry");
     }
 
-    return await ctx.db.insert("userIndustries", {
+    const result = await ctx.db.insert("userIndustries", {
       userId,
       industryId: args.industryId,
       //   addedAt: Date.now(),
     });
+    return result;
   },
 });
 

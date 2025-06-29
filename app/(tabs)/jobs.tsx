@@ -191,7 +191,7 @@ export default function JobsScreen() {
   return (
     <SafeAreaView
       className="flex-1 bg-gray-50"
-      //  edges={{ top: "off" }}
+      edges={{ bottom: "off", top: "additive" }}
     >
       <View className="px-4 pt-4 pb-2 bg-white border-b border-gray-200">
         {/* Search Bar */}
