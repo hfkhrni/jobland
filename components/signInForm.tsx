@@ -14,9 +14,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
 import { z } from "zod";
 import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { Input } from "./ui/input";
-import { Text } from "./ui/text";
+import { Text } from "~/components/ui/text";
+import { cn } from "~/lib/utils"; // If you use the cn utility
 
 // Zod schema for sign in
 const SignInSchema = z.object({
@@ -79,12 +80,11 @@ export function SignInForm() {
         password: form.password,
         flow: "signIn",
       });
-      router.replace("/");
+      router.replace("/(tabs)/");
       Toast.show({
         type: "success",
         text1: "Signed in successfully!",
       });
-      // router.replace("/(protected)/home");
     } catch (error) {
       Toast.show({
         type: "error",
@@ -111,15 +111,17 @@ export function SignInForm() {
             contentContainerStyle={{ justifyContent: "center", flexGrow: 1 }}
             keyboardShouldPersistTaps="handled"
           >
-            <Label className="text-2xl font-bold mb-6 text-center">
-              Sign In
-            </Label>
+            <Text className="text-2xl font-bold mb-2 text-center">Sign In</Text>
+            <Text className="text-gray-600 mb-6 text-center">
+              Welcome back! Please enter your credentials to continue.
+            </Text>
 
             <Label className="mb-2">Email</Label>
             <Input
-              className={`border rounded-full px-3 py-2 mb-1 ${
+              className={cn(
+                "border rounded-full px-3 py-2 mb-4",
                 errors.email ? "border-red-500" : ""
-              }`}
+              )}
               autoCapitalize="none"
               autoComplete="email"
               keyboardType="email-address"
@@ -128,45 +130,44 @@ export function SignInForm() {
               placeholder="Enter your email"
             />
             {errors.email && (
-              <Label className="text-xs text-red-500 mb-2">
-                {errors.email}
-              </Label>
+              <Text className="text-xs text-red-500 mb-2">{errors.email}</Text>
             )}
 
             <Label className="mb-2">Password</Label>
             <Input
-              className={`border rounded-full px-3 py-2 mb-1 ${
+              className={cn(
+                "border rounded-full px-3 py-2 mb-1",
                 errors.password ? "border-red-500" : ""
-              }`}
+              )}
               secureTextEntry
               autoComplete="current-password"
               value={form.password}
               onChangeText={(v) => handleChange("password", v)}
               placeholder="Your password"
             />
-            <Label className="text-xs text-gray-500 mb-2">
+            <Text className="text-xs text-gray-500 mb-2">
               Password must be at least 8 characters.
-            </Label>
+            </Text>
             {errors.password && (
-              <Label className="text-xs text-red-500 mb-2">
+              <Text className="text-xs text-red-500 mb-2">
                 {errors.password}
-              </Label>
+              </Text>
             )}
 
             <Button
-              className="bg-blue-600 py-3 rounded-full mb-4"
+              className="bg-blue-600 py-3 rounded-full mt-2 mb-4"
               onPress={handleSubmit}
               disabled={disableSubmit}
             >
               {submitting ? (
                 <ActivityIndicator color="#fff" />
               ) : (
-                <Label className="text-white text-center font-semibold">
+                <Text className="text-white text-center font-semibold">
                   Sign In
-                </Label>
+                </Text>
               )}
             </Button>
-            <TouchableOpacity onPress={() => router.push("/(auth)/sign-up")}>
+            <TouchableOpacity onPress={() => router.replace("/(auth)/sign-up")}>
               <Text className="text-blue-600 text-center pb-10">
                 Don't have an account? Sign up
               </Text>

@@ -1,7 +1,8 @@
+import { getAuthUserId } from "@convex-dev/auth/server";
 import { paginationOptsValidator } from "convex/server";
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 import { Doc } from "./_generated/dataModel";
-import { query } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 
 // Return the last 100 tasks in a given task list.
 export const getJobs = query({
@@ -100,20 +101,111 @@ export const getJobById = query({
   },
 });
 
-// const client = new ConvexHttpClient("https://vibrant-iguana-889.convex.cloud");
+export const hasApplied = query({
+  args: { jobId: v.id("jobs") },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) return false;
 
-// export async function fetchFirstJobsPage(): Promise<void> {
-//   let nextCursor = null;
-//   let result;
-//   try {
-//     //   let nextCursor = null;
-//     ({ result, nextCursor } = await client.query(api.jobs.getJobs, {
-//       paginationOpts: { numItems: 100, cursor: nextCursor },
-//     }));
+    const application = await ctx.db
+      .query("jobApplications")
+      .withIndex("applicantJob", (q) =>
+        q.eq("applicantId", userId).eq("jobId", args.jobId)
+      )
+      .first();
 
-//     console.log("Jobs (first page):", result);
-//     console.log("Next cursor:", nextCursor);
-//   } catch (err) {
-//     console.error("Failed to fetch jobs:", err);
-//   }
-// }
+    return !!application;
+  },
+});
+
+// Check if user has saved a job
+export const hasSaved = query({
+  args: { jobId: v.id("jobs") },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) return false;
+
+    const savedJob = await ctx.db
+      .query("savedJobs")
+      .withIndex("userJob", (q) =>
+        q.eq("userId", userId).eq("jobId", args.jobId)
+      )
+      .first();
+
+    return !!savedJob;
+  },
+});
+
+export const applyToJob = mutation({
+  args: {
+    jobId: v.id("jobs"),
+    coverLetter: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) {
+      throw new ConvexError("You must be logged in to apply for jobs");
+    }
+
+    // Check if user already applied
+    const existingApplication = await ctx.db
+      .query("jobApplications")
+      .withIndex("applicantJob", (q) =>
+        q.eq("applicantId", userId).eq("jobId", args.jobId)
+      )
+      .first();
+
+    if (existingApplication) {
+      throw new ConvexError("You have already applied to this job");
+    }
+
+    // Check if job exists and is active
+    const job = await ctx.db.get(args.jobId);
+    if (!job || !job.isActive) {
+      throw new ConvexError("Job not found or no longer active");
+    }
+
+    // Create application
+    const applicationId = await ctx.db.insert("jobApplications", {
+      jobId: args.jobId,
+      applicantId: userId,
+      status: "applied",
+      appliedAt: Date.now(),
+      coverLetter: args.coverLetter,
+    });
+
+    return applicationId;
+  },
+});
+
+export const toggleSaveJob = mutation({
+  args: { jobId: v.id("jobs") },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) {
+      throw new ConvexError("You must be logged in to save jobs");
+    }
+
+    // Check if job is already saved
+    const existingSave = await ctx.db
+      .query("savedJobs")
+      .withIndex("userJob", (q) =>
+        q.eq("userId", userId).eq("jobId", args.jobId)
+      )
+      .first();
+
+    if (existingSave) {
+      // Remove from saved jobs
+      await ctx.db.delete(existingSave._id);
+      return { saved: false };
+    } else {
+      // Add to saved jobs
+      await ctx.db.insert("savedJobs", {
+        userId,
+        jobId: args.jobId,
+        savedAt: Date.now(),
+      });
+      return { saved: true };
+    }
+  },
+});

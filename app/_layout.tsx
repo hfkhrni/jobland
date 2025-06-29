@@ -9,7 +9,7 @@ import { ConvexReactClient, useConvexAuth } from "convex/react";
 import { Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { StatusBar } from "expo-status-bar";
-import { Platform } from "react-native";
+import { ActivityIndicator, Platform } from "react-native";
 import "react-native-gesture-handler";
 import "react-native-reanimated";
 // import { useColorScheme } from "~/hooks/useColorScheme";
@@ -19,6 +19,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NAV_THEME } from "~/lib/constants";
 import { useColorScheme } from "~/lib/useColorScheme";
 
+import { View } from "react-native";
 import Toast from "react-native-toast-message";
 
 const LIGHT_THEME: Theme = {
@@ -105,8 +106,19 @@ function RootNavigator() {
     hasMounted.current = true;
   }, []);
 
-  if (!isColorSchemeLoaded) {
-    return null;
+  if (isLoading || !isColorSchemeLoaded) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: isDarkColorScheme ? "#000" : "#fff",
+        }}
+      >
+        <ActivityIndicator size="large" color="#888" />
+      </View>
+    );
   }
 
   return (

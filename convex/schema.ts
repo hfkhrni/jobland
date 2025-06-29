@@ -132,18 +132,37 @@ const schema = defineSchema({
     .index("job", ["jobId"])
     .index("skill", ["skillId"]),
 
+  userIndustries: defineTable({
+    userId: v.id("users"),
+    industryId: v.id("industries"),
+    // required: v.boolean(), // true for required, false for preferred
+  })
+    .index("user", ["userId"])
+    .index("industry", ["industryId"])
+    .index("userIndustry", ["userId", "industryId"]),
+
   jobApplications: defineTable({
     jobId: v.id("jobs"),
     applicantId: v.id("users"),
     status: v.string(), // "applied", "reviewing", "interviewed", "rejected", "hired"
-    // appliedAt: v.number(),
+    appliedAt: v.number(),
     coverLetter: v.optional(v.string()),
     resume: v.optional(v.string()), // URL or file ID
     notes: v.optional(v.string()),
   })
     .index("job", ["jobId"])
     .index("applicant", ["applicantId"])
-    .index("status", ["status"]),
+    .index("status", ["status"])
+    .index("applicantJob", ["applicantId", "jobId"]),
+
+  savedJobs: defineTable({
+    userId: v.id("users"),
+    jobId: v.id("jobs"),
+    savedAt: v.number(),
+  })
+    .index("user", ["userId"])
+    .index("job", ["jobId"])
+    .index("userJob", ["userId", "jobId"]),
 
   experiences: defineTable({
     userId: v.id("users"),

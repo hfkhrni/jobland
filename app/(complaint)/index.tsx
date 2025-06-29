@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useMutation } from "convex/react";
 import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
+import { Stack } from "expo-router";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
@@ -338,368 +339,384 @@ export default function ComplaintForm() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50" edges={{ bottom: "additive" }}>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : "padding"}
+    <>
+      <Stack.Screen
+        options={{
+          title: "Complaints",
+          headerLargeTitle: true,
+        }}
+      />
+      <SafeAreaView
+        className="flex-1 bg-gray-50"
+        edges={{ bottom: "additive" }}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <ScrollView
-            className="flex-1"
-            contentContainerStyle={{ paddingBottom: 100 }}
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
-          >
-            {/* Header */}
-            <View className="bg-white px-6 py-6 border-b border-gray-200">
-              <Text className="text-2xl font-bold text-gray-900 mb-2">
-                Submit Complaint
-              </Text>
-              <Text className="text-gray-600">
-                Please provide detailed information about your complaint
-              </Text>
-            </View>
-
-            <View className="px-4 py-6">
-              {/* Personal Information Section */}
-              <View className="bg-white rounded-xl p-6 mb-4 border border-gray-200">
-                <Text className="text-lg font-semibold text-gray-900 mb-4">
-                  Personal Information
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : "padding"}
+        >
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <ScrollView
+              className="flex-1"
+              contentContainerStyle={{ paddingBottom: 100 }}
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={false}
+            >
+              {/* Header */}
+              <View className="bg-white px-6 py-6 border-b border-gray-200">
+                <Text className="text-2xl font-bold text-gray-900 mb-2">
+                  Submit Complaint
                 </Text>
-
-                <Label className="text-gray-700 font-medium mb-2">
-                  Full Name *
-                </Label>
-                <Input
-                  className={cn(
-                    "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
-                    errors.fullName ? "border-red-500" : "border-gray-200"
-                  )}
-                  value={form.fullName}
-                  onChangeText={(v) => handleChange("fullName", v)}
-                  placeholder="Enter your full name"
-                />
-                {errors.fullName && (
-                  <Text className="text-xs text-red-500 mb-3">
-                    {errors.fullName}
-                  </Text>
-                )}
-
-                <Label className="text-gray-700 font-medium mb-2">
-                  Email Address *
-                </Label>
-                <Input
-                  className={cn(
-                    "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
-                    errors.email ? "border-red-500" : "border-gray-200"
-                  )}
-                  autoCapitalize="none"
-                  autoComplete="email"
-                  keyboardType="email-address"
-                  value={form.email}
-                  onChangeText={(v) => handleChange("email", v)}
-                  placeholder="Enter your email address"
-                />
-                {errors.email && (
-                  <Text className="text-xs text-red-500 mb-3">
-                    {errors.email}
-                  </Text>
-                )}
-
-                <Label className="text-gray-700 font-medium mb-2">
-                  Phone Number *
-                </Label>
-                <Input
-                  className={cn(
-                    "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
-                    errors.phoneNumber ? "border-red-500" : "border-gray-200"
-                  )}
-                  keyboardType="phone-pad"
-                  value={form.phoneNumber}
-                  onChangeText={(v) => handleChange("phoneNumber", v)}
-                  placeholder="Enter your phone number"
-                />
-                {errors.phoneNumber && (
-                  <Text className="text-xs text-red-500 mb-3">
-                    {errors.phoneNumber}
-                  </Text>
-                )}
+                <Text className="text-gray-600">
+                  Please provide detailed information about your complaint
+                </Text>
               </View>
 
-              {/* Company Information Section */}
-              <View className="bg-white rounded-xl p-6 mb-4 border border-gray-200">
-                <Text className="text-lg font-semibold text-gray-900 mb-4">
-                  Company Information
-                </Text>
-
-                <Label className="text-gray-700 font-medium mb-2">
-                  Your Role/Position *
-                </Label>
-                <Input
-                  className={cn(
-                    "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
-                    errors.employerDetails
-                      ? "border-red-500"
-                      : "border-gray-200"
-                  )}
-                  value={form.employerDetails}
-                  onChangeText={(v) => handleChange("employerDetails", v)}
-                  placeholder="e.g., Software Engineer, Manager, etc."
-                />
-                {errors.employerDetails && (
-                  <Text className="text-xs text-red-500 mb-3">
-                    {errors.employerDetails}
+              <View className="px-4 py-6">
+                {/* Personal Information Section */}
+                <View className="bg-white rounded-xl p-6 mb-4 border border-gray-200">
+                  <Text className="text-lg font-semibold text-gray-900 mb-4">
+                    Personal Information
                   </Text>
-                )}
 
-                <Label className="text-gray-700 font-medium mb-2">
-                  Company Name *
-                </Label>
-                <Input
-                  className={cn(
-                    "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
-                    errors.companyName ? "border-red-500" : "border-gray-200"
+                  <Label className="text-gray-700 font-medium mb-2">
+                    Full Name *
+                  </Label>
+                  <Input
+                    className={cn(
+                      "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
+                      errors.fullName ? "border-red-500" : "border-gray-200"
+                    )}
+                    value={form.fullName}
+                    onChangeText={(v) => handleChange("fullName", v)}
+                    placeholder="Enter your full name"
+                  />
+                  {errors.fullName && (
+                    <Text className="text-xs text-red-500 mb-3">
+                      {errors.fullName}
+                    </Text>
                   )}
-                  value={form.companyName}
-                  onChangeText={(v) => handleChange("companyName", v)}
-                  placeholder="Enter company name"
-                />
-                {errors.companyName && (
-                  <Text className="text-xs text-red-500 mb-3">
-                    {errors.companyName}
-                  </Text>
-                )}
 
-                <Label className="text-gray-700 font-medium mb-2">
-                  Company Address *
-                </Label>
-                <Input
-                  className={cn(
-                    "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
-                    errors.companyAddress ? "border-red-500" : "border-gray-200"
+                  <Label className="text-gray-700 font-medium mb-2">
+                    Email Address *
+                  </Label>
+                  <Input
+                    className={cn(
+                      "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
+                      errors.email ? "border-red-500" : "border-gray-200"
+                    )}
+                    autoCapitalize="none"
+                    autoComplete="email"
+                    keyboardType="email-address"
+                    value={form.email}
+                    onChangeText={(v) => handleChange("email", v)}
+                    placeholder="Enter your email address"
+                  />
+                  {errors.email && (
+                    <Text className="text-xs text-red-500 mb-3">
+                      {errors.email}
+                    </Text>
                   )}
-                  value={form.companyAddress}
-                  onChangeText={(v) => handleChange("companyAddress", v)}
-                  placeholder="Enter complete company address"
-                  multiline
-                  numberOfLines={3}
-                  textAlignVertical="top"
-                />
-                {errors.companyAddress && (
-                  <Text className="text-xs text-red-500 mb-3">
-                    {errors.companyAddress}
-                  </Text>
-                )}
 
-                <Label className="text-gray-700 font-medium mb-2">
-                  Company Contact (Optional)
-                </Label>
-                <Input
-                  className="border rounded-xl px-4 py-3 mb-1 bg-gray-50 border-gray-200"
-                  value={form.companyContact}
-                  onChangeText={(v) => handleChange("companyContact", v)}
-                  placeholder="HR contact, supervisor, etc."
-                />
-              </View>
-
-              {/* Supporting Evidence Section */}
-              <View className="bg-white rounded-xl p-6 mb-4 border border-gray-200">
-                <Text className="text-lg font-semibold text-gray-900 mb-4">
-                  Supporting Evidence
-                </Text>
-
-                <View className="flex-row gap-3 mb-4">
-                  <Button
-                    onPress={pickImage}
-                    className="flex-1 bg-blue-50 border border-blue-200 py-3 rounded-xl"
-                  >
-                    <View className="flex-row items-center justify-center">
-                      <Ionicons
-                        name="image-outline"
-                        size={20}
-                        color="#2563eb"
-                      />
-                      <Text className="text-blue-600 font-medium ml-2">
-                        Add Images
-                      </Text>
-                    </View>
-                  </Button>
-
-                  <Button
-                    onPress={pickDocument}
-                    className="flex-1 bg-green-50 border border-green-200 py-3 rounded-xl"
-                  >
-                    <View className="flex-row items-center justify-center">
-                      <Ionicons
-                        name="document-outline"
-                        size={20}
-                        color="#059669"
-                      />
-                      <Text className="text-green-600 font-medium ml-2">
-                        Add Files
-                      </Text>
-                    </View>
-                  </Button>
+                  <Label className="text-gray-700 font-medium mb-2">
+                    Phone Number *
+                  </Label>
+                  <Input
+                    className={cn(
+                      "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
+                      errors.phoneNumber ? "border-red-500" : "border-gray-200"
+                    )}
+                    keyboardType="phone-pad"
+                    value={form.phoneNumber}
+                    onChangeText={(v) => handleChange("phoneNumber", v)}
+                    placeholder="Enter your phone number"
+                  />
+                  {errors.phoneNumber && (
+                    <Text className="text-xs text-red-500 mb-3">
+                      {errors.phoneNumber}
+                    </Text>
+                  )}
                 </View>
 
-                {/* Uploaded Files List */}
-                {uploadedFiles.length > 0 && (
-                  <View className="mb-4">
-                    <Text className="text-sm font-medium text-gray-700 mb-2">
-                      Uploaded Files ({uploadedFiles.length})
+                {/* Company Information Section */}
+                <View className="bg-white rounded-xl p-6 mb-4 border border-gray-200">
+                  <Text className="text-lg font-semibold text-gray-900 mb-4">
+                    Company Information
+                  </Text>
+
+                  <Label className="text-gray-700 font-medium mb-2">
+                    Your Role/Position *
+                  </Label>
+                  <Input
+                    className={cn(
+                      "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
+                      errors.employerDetails
+                        ? "border-red-500"
+                        : "border-gray-200"
+                    )}
+                    value={form.employerDetails}
+                    onChangeText={(v) => handleChange("employerDetails", v)}
+                    placeholder="e.g., Software Engineer, Manager, etc."
+                  />
+                  {errors.employerDetails && (
+                    <Text className="text-xs text-red-500 mb-3">
+                      {errors.employerDetails}
                     </Text>
-                    {uploadedFiles.map((file) => (
-                      <View
-                        key={file.id}
-                        className="flex-row items-center justify-between bg-gray-50 rounded-lg p-3 mb-2"
-                      >
-                        <View className="flex-row items-center flex-1">
-                          <Ionicons
-                            name={
-                              file.type === "image"
-                                ? "image-outline"
-                                : "document-outline"
-                            }
-                            size={20}
-                            color="#6B7280"
-                          />
-                          <View className="ml-3 flex-1">
-                            <Text
-                              className="text-sm font-medium text-gray-900"
-                              numberOfLines={1}
-                            >
-                              {file.name}
-                            </Text>
-                            <View className="flex-row items-center">
-                              {file.size && (
-                                <Text className="text-xs text-gray-500">
-                                  {formatFileSize(file.size)}
-                                </Text>
-                              )}
-                              {file.uploading && (
-                                <Text className="text-xs text-blue-500 ml-2">
-                                  Uploading...
-                                </Text>
-                              )}
-                              {!file.uploading && file.storageId && (
-                                <Text className="text-xs text-green-500 ml-2">
-                                  ✓ Uploaded
-                                </Text>
-                              )}
-                              {!file.uploading && !file.storageId && (
-                                <Text className="text-xs text-red-500 ml-2">
-                                  ✗ Failed
-                                </Text>
-                              )}
+                  )}
+
+                  <Label className="text-gray-700 font-medium mb-2">
+                    Company Name *
+                  </Label>
+                  <Input
+                    className={cn(
+                      "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
+                      errors.companyName ? "border-red-500" : "border-gray-200"
+                    )}
+                    value={form.companyName}
+                    onChangeText={(v) => handleChange("companyName", v)}
+                    placeholder="Enter company name"
+                  />
+                  {errors.companyName && (
+                    <Text className="text-xs text-red-500 mb-3">
+                      {errors.companyName}
+                    </Text>
+                  )}
+
+                  <Label className="text-gray-700 font-medium mb-2">
+                    Company Address *
+                  </Label>
+                  <Input
+                    className={cn(
+                      "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
+                      errors.companyAddress
+                        ? "border-red-500"
+                        : "border-gray-200"
+                    )}
+                    value={form.companyAddress}
+                    onChangeText={(v) => handleChange("companyAddress", v)}
+                    placeholder="Enter complete company address"
+                    multiline
+                    numberOfLines={3}
+                    textAlignVertical="top"
+                  />
+                  {errors.companyAddress && (
+                    <Text className="text-xs text-red-500 mb-3">
+                      {errors.companyAddress}
+                    </Text>
+                  )}
+
+                  <Label className="text-gray-700 font-medium mb-2">
+                    Company Contact (Optional)
+                  </Label>
+                  <Input
+                    className="border rounded-xl px-4 py-3 mb-1 bg-gray-50 border-gray-200"
+                    value={form.companyContact}
+                    onChangeText={(v) => handleChange("companyContact", v)}
+                    placeholder="HR contact, supervisor, etc."
+                  />
+                </View>
+
+                {/* Supporting Evidence Section */}
+                <View className="bg-white rounded-xl p-6 mb-4 border border-gray-200">
+                  <Text className="text-lg font-semibold text-gray-900 mb-4">
+                    Supporting Evidence
+                  </Text>
+
+                  <View className="flex-row gap-3 mb-4">
+                    <Button
+                      onPress={pickImage}
+                      className="flex-1 bg-blue-50 border border-blue-200 py-3 rounded-xl"
+                    >
+                      <View className="flex-row items-center justify-center">
+                        <Ionicons
+                          name="image-outline"
+                          size={20}
+                          color="#2563eb"
+                        />
+                        <Text className="text-blue-600 font-medium ml-2">
+                          Add Images
+                        </Text>
+                      </View>
+                    </Button>
+
+                    <Button
+                      onPress={pickDocument}
+                      className="flex-1 bg-green-50 border border-green-200 py-3 rounded-xl"
+                    >
+                      <View className="flex-row items-center justify-center">
+                        <Ionicons
+                          name="document-outline"
+                          size={20}
+                          color="#059669"
+                        />
+                        <Text className="text-green-600 font-medium ml-2">
+                          Add Files
+                        </Text>
+                      </View>
+                    </Button>
+                  </View>
+
+                  {/* Uploaded Files List */}
+                  {uploadedFiles.length > 0 && (
+                    <View className="mb-4">
+                      <Text className="text-sm font-medium text-gray-700 mb-2">
+                        Uploaded Files ({uploadedFiles.length})
+                      </Text>
+                      {uploadedFiles.map((file) => (
+                        <View
+                          key={file.id}
+                          className="flex-row items-center justify-between bg-gray-50 rounded-lg p-3 mb-2"
+                        >
+                          <View className="flex-row items-center flex-1">
+                            <Ionicons
+                              name={
+                                file.type === "image"
+                                  ? "image-outline"
+                                  : "document-outline"
+                              }
+                              size={20}
+                              color="#6B7280"
+                            />
+                            <View className="ml-3 flex-1">
+                              <Text
+                                className="text-sm font-medium text-gray-900"
+                                numberOfLines={1}
+                              >
+                                {file.name}
+                              </Text>
+                              <View className="flex-row items-center">
+                                {file.size && (
+                                  <Text className="text-xs text-gray-500">
+                                    {formatFileSize(file.size)}
+                                  </Text>
+                                )}
+                                {file.uploading && (
+                                  <Text className="text-xs text-blue-500 ml-2">
+                                    Uploading...
+                                  </Text>
+                                )}
+                                {!file.uploading && file.storageId && (
+                                  <Text className="text-xs text-green-500 ml-2">
+                                    ✓ Uploaded
+                                  </Text>
+                                )}
+                                {!file.uploading && !file.storageId && (
+                                  <Text className="text-xs text-red-500 ml-2">
+                                    ✗ Failed
+                                  </Text>
+                                )}
+                              </View>
                             </View>
                           </View>
+                          <View className="flex-row items-center">
+                            {file.uploading && (
+                              <ActivityIndicator
+                                size="small"
+                                color="#2563eb"
+                                style={{ marginRight: 8 }}
+                              />
+                            )}
+                            <TouchableOpacity
+                              onPress={() => removeFile(file.id)}
+                              className="p-1"
+                            >
+                              <Ionicons
+                                name="close-circle"
+                                size={20}
+                                color="#EF4444"
+                              />
+                            </TouchableOpacity>
+                          </View>
                         </View>
-                        <View className="flex-row items-center">
-                          {file.uploading && (
-                            <ActivityIndicator
-                              size="small"
-                              color="#2563eb"
-                              style={{ marginRight: 8 }}
-                            />
-                          )}
-                          <TouchableOpacity
-                            onPress={() => removeFile(file.id)}
-                            className="p-1"
-                          >
-                            <Ionicons
-                              name="close-circle"
-                              size={20}
-                              color="#EF4444"
-                            />
-                          </TouchableOpacity>
-                        </View>
-                      </View>
-                    ))}
-                  </View>
-                )}
-
-                <Label className="text-gray-700 font-medium mb-2">
-                  Evidence Description *
-                </Label>
-                <Input
-                  className={cn(
-                    "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
-                    errors.evidenceDescription
-                      ? "border-red-500"
-                      : "border-gray-200"
+                      ))}
+                    </View>
                   )}
-                  value={form.evidenceDescription}
-                  onChangeText={(v) => handleChange("evidenceDescription", v)}
-                  placeholder="Describe the evidence you've provided..."
-                  multiline
-                  numberOfLines={4}
-                  textAlignVertical="top"
-                />
-                {errors.evidenceDescription && (
-                  <Text className="text-xs text-red-500 mb-3">
-                    {errors.evidenceDescription}
-                  </Text>
-                )}
-              </View>
 
-              {/* Complaint Details Section */}
-              <View className="bg-white rounded-xl p-6 mb-6 border border-gray-200">
-                <Text className="text-lg font-semibold text-gray-900 mb-4">
-                  Complaint Details
+                  <Label className="text-gray-700 font-medium mb-2">
+                    Evidence Description *
+                  </Label>
+                  <Input
+                    className={cn(
+                      "border rounded-xl px-4 py-3 mb-1 bg-gray-50",
+                      errors.evidenceDescription
+                        ? "border-red-500"
+                        : "border-gray-200"
+                    )}
+                    value={form.evidenceDescription}
+                    onChangeText={(v) => handleChange("evidenceDescription", v)}
+                    placeholder="Describe the evidence you've provided..."
+                    multiline
+                    numberOfLines={4}
+                    textAlignVertical="top"
+                  />
+                  {errors.evidenceDescription && (
+                    <Text className="text-xs text-red-500 mb-3">
+                      {errors.evidenceDescription}
+                    </Text>
+                  )}
+                </View>
+
+                {/* Complaint Details Section */}
+                <View className="bg-white rounded-xl p-6 mb-6 border border-gray-200">
+                  <Text className="text-lg font-semibold text-gray-900 mb-4">
+                    Complaint Details
+                  </Text>
+
+                  <Label className="text-gray-700 font-medium mb-2">
+                    Detailed Description *
+                  </Label>
+                  <Input
+                    className={cn(
+                      "border rounded-xl px-4 py-3 mb-1 bg-gray-50 h-20",
+                      errors.complaintDescription
+                        ? "border-red-500"
+                        : "border-gray-200"
+                    )}
+                    value={form.complaintDescription}
+                    onChangeText={(v) =>
+                      handleChange("complaintDescription", v)
+                    }
+                    placeholder="Please provide a detailed description of your complaint, including dates, incidents, and any relevant context..."
+                    multiline
+                    numberOfLines={16}
+                    textAlignVertical="top"
+                  />
+                  {errors.complaintDescription && (
+                    <Text className="text-xs text-red-500 mb-3">
+                      {errors.complaintDescription}
+                    </Text>
+                  )}
+                </View>
+
+                {/* Submit Button */}
+                <Button
+                  className={cn(
+                    "py-4 rounded-xl mb-4",
+                    disableSubmit ? "bg-gray-300" : "bg-blue-600"
+                  )}
+                  onPress={handleSubmit}
+                  disabled={disableSubmit}
+                >
+                  {submitting ? (
+                    <ActivityIndicator color="#fff" />
+                  ) : (
+                    <Text className="text-white text-center font-semibold text-lg">
+                      {hasUploadingFiles
+                        ? "Uploading Files..."
+                        : "Submit Complaint"}
+                    </Text>
+                  )}
+                </Button>
+
+                <Text className="text-xs text-gray-500 text-center leading-4">
+                  By submitting this complaint, you confirm that the information
+                  provided is accurate and complete to the best of your
+                  knowledge.
                 </Text>
-
-                <Label className="text-gray-700 font-medium mb-2">
-                  Detailed Description *
-                </Label>
-                <Input
-                  className={cn(
-                    "border rounded-xl px-4 py-3 mb-1 bg-gray-50 h-20",
-                    errors.complaintDescription
-                      ? "border-red-500"
-                      : "border-gray-200"
-                  )}
-                  value={form.complaintDescription}
-                  onChangeText={(v) => handleChange("complaintDescription", v)}
-                  placeholder="Please provide a detailed description of your complaint, including dates, incidents, and any relevant context..."
-                  multiline
-                  numberOfLines={16}
-                  textAlignVertical="top"
-                />
-                {errors.complaintDescription && (
-                  <Text className="text-xs text-red-500 mb-3">
-                    {errors.complaintDescription}
-                  </Text>
-                )}
               </View>
-
-              {/* Submit Button */}
-              <Button
-                className={cn(
-                  "py-4 rounded-xl mb-4",
-                  disableSubmit ? "bg-gray-300" : "bg-blue-600"
-                )}
-                onPress={handleSubmit}
-                disabled={disableSubmit}
-              >
-                {submitting ? (
-                  <ActivityIndicator color="#fff" />
-                ) : (
-                  <Text className="text-white text-center font-semibold text-lg">
-                    {hasUploadingFiles
-                      ? "Uploading Files..."
-                      : "Submit Complaint"}
-                  </Text>
-                )}
-              </Button>
-
-              <Text className="text-xs text-gray-500 text-center leading-4">
-                By submitting this complaint, you confirm that the information
-                provided is accurate and complete to the best of your knowledge.
-              </Text>
-            </View>
-          </ScrollView>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+            </ScrollView>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </>
   );
 }

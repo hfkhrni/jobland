@@ -1,9 +1,10 @@
 // app/job/[id].tsx
 import { Ionicons } from "@expo/vector-icons";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { Image } from "expo-image";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Pressable, ScrollView, View } from "react-native";
+import { useState } from "react";
+import { Alert, Linking, Pressable, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Button } from "~/components/ui/button";
@@ -12,9 +13,17 @@ import { api } from "~/convex/_generated/api";
 
 export default function JobDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const [isApplying, setIsApplying] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   // Fetch the specific job by ID
   const job = useQuery(api.jobs.getJobById, { jobId: id as any });
+  const hasApplied = useQuery(api.jobs.hasApplied, { jobId: id as any });
+  const hasSaved = useQuery(api.jobs.hasSaved, { jobId: id as any });
+
+  // Mutations
+  const applyToJob = useMutation(api.jobs.applyToJob);
+  const toggleSaveJob = useMutation(api.jobs.toggleSaveJob);
 
   if (!job) {
     return (
@@ -26,6 +35,46 @@ export default function JobDetailsScreen() {
 
   const formatSalary = (salary: typeof job.salary) => {
     return `${salary.currency}${salary.min.toLocaleString()} - ${salary.currency}${salary.max.toLocaleString()}`;
+  };
+
+  const handleApply = async () => {
+    if (hasApplied) {
+      Alert.alert("Already Applied", "You have already applied to this job.");
+      return;
+    }
+
+    setIsApplying(true);
+    try {
+      await applyToJob({ jobId: id as any });
+      Alert.alert("Success", "Your application has been submitted!");
+    } catch (error) {
+      Alert.alert(
+        "Error",
+        error instanceof Error ? error.message : "Failed to apply"
+      );
+    } finally {
+      setIsApplying(false);
+    }
+  };
+
+  const handleSave = async () => {
+    setIsSaving(true);
+    try {
+      const result = await toggleSaveJob({ jobId: id as any });
+      // Optional: Show a toast or brief feedback
+    } catch (error) {
+      Alert.alert(
+        "Error",
+        error instanceof Error ? error.message : "Failed to save job"
+      );
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleShare = () => {
+    // Implement share functionality
+    Alert.alert("Share", "Share functionality coming soon!");
   };
 
   return (
@@ -47,18 +96,14 @@ export default function JobDetailsScreen() {
           {/* Header Section */}
           <View className="py-6">
             <View className="flex-row items-start mb-6">
-              <View className="w-20">
+              <View className="w-20 h-20">
                 {job.company?.logo ? (
                   <Image
                     contentFit="contain"
                     source={{ uri: job.company.logo }}
-                    // source="https://picsum.photos/seed/696/3000/2000"
-                    // className="rounded-xl bg-gray-200"
                     style={{
                       width: "100%",
                       flex: 1,
-                      //   backgroundColor: "#0553",
-                      // padding: 4,
                     }}
                   />
                 ) : (
@@ -90,17 +135,42 @@ export default function JobDetailsScreen() {
 
             {/* Action Buttons */}
             <View className="flex-row gap-3 mb-8">
-              <Button className="flex-1 bg-blue-600 py-4">
+              <Button
+                className={`flex-1 py-4 ${
+                  hasApplied
+                    ? "bg-gray-400"
+                    : isApplying
+                      ? "bg-blue-400"
+                      : "bg-blue-600"
+                }`}
+                onPress={handleApply}
+                disabled={hasApplied || isApplying}
+              >
                 <Text className="text-white font-semibold text-lg">
-                  Apply Now
+                  {hasApplied
+                    ? "Applied"
+                    : isApplying
+                      ? "Applying..."
+                      : "Apply Now"}
                 </Text>
               </Button>
-              <Pressable className="px-4 py-4 border border-gray-300 rounded-lg items-center justify-center">
-                <Ionicons name="bookmark-outline" size={24} color="#3B82F6" />
+              <Pressable
+                className="px-4 py-4 border border-gray-300 rounded-lg items-center justify-center"
+                onPress={handleSave}
+                disabled={isSaving}
+              >
+                <Ionicons
+                  name={hasSaved ? "bookmark" : "bookmark-outline"}
+                  size={14}
+                  color={hasSaved ? "#10B981" : "#3B82F6"}
+                />
               </Pressable>
-              <Pressable className="px-4 py-4 border border-gray-300 rounded-lg items-center justify-center">
+              {/* <Pressable
+                className="px-4 py-4 border border-gray-300 rounded-lg items-center justify-center"
+                onPress={handleShare}
+              >
                 <Ionicons name="share-outline" size={24} color="#3B82F6" />
-              </Pressable>
+              </Pressable> */}
             </View>
           </View>
 
@@ -132,7 +202,7 @@ export default function JobDetailsScreen() {
           )}
 
           {/* Benefits */}
-          {job.benefits.length > 0 && (
+          {job.benefits && job.benefits.length > 0 && (
             <View className="mb-8">
               <Text className="text-2xl font-bold text-gray-900 mb-4">
                 Benefits
@@ -161,10 +231,16 @@ export default function JobDetailsScreen() {
               <View className="bg-gray-50 rounded-xl p-6">
                 <View className="flex-row items-center mb-4">
                   {job.company.logo ? (
-                    <Image
-                      source={{ uri: job.company.logo }}
-                      className="w-16 h-16 rounded-xl bg-gray-200"
-                    />
+                    <View className="flex w-8 h-8">
+                      <Image
+                        contentFit="contain"
+                        source={{ uri: job.company.logo }}
+                        style={{
+                          width: "100%",
+                          flex: 1,
+                        }}
+                      />
+                    </View>
                   ) : (
                     <View className="w-16 h-16 rounded-xl bg-blue-100 items-center justify-center">
                       <Ionicons name="business" size={32} color="#3B82F6" />
@@ -194,7 +270,10 @@ export default function JobDetailsScreen() {
                 )}
 
                 {job.company.website && (
-                  <Pressable className="flex-row items-center">
+                  <Pressable
+                    className="flex-row items-center"
+                    onPress={() => Linking.openURL(job.company.website)}
+                  >
                     <Ionicons name="globe-outline" size={20} color="#3B82F6" />
                     <Text className="text-blue-600 ml-2 font-medium">
                       Visit Company Website
@@ -206,7 +285,7 @@ export default function JobDetailsScreen() {
           )}
 
           {/* Posted By */}
-          <View className="mb-8">
+          {/* <View className="mb-8">
             <Text className="text-2xl font-bold text-gray-900 mb-4">
               Posted by
             </Text>
@@ -221,7 +300,7 @@ export default function JobDetailsScreen() {
                 <Text className="text-gray-600">Recruiter</Text>
               </View>
             </View>
-          </View>
+          </View> */}
 
           {/* Bottom spacing */}
           <View className="h-20" />
@@ -229,8 +308,24 @@ export default function JobDetailsScreen() {
 
         {/* Fixed Bottom Button */}
         <View className="px-6 py-4 bg-white border-t border-gray-200">
-          <Button className="w-full bg-blue-600 py-4">
-            <Text className="text-white font-semibold text-lg">Apply Now</Text>
+          <Button
+            className={`w-full py-4 ${
+              hasApplied
+                ? "bg-gray-400"
+                : isApplying
+                  ? "bg-blue-400"
+                  : "bg-blue-600"
+            }`}
+            onPress={handleApply}
+            disabled={hasApplied || isApplying}
+          >
+            <Text className="text-white font-semibold text-lg">
+              {hasApplied
+                ? "Applied"
+                : isApplying
+                  ? "Applying..."
+                  : "Apply Now"}
+            </Text>
           </Button>
         </View>
       </SafeAreaView>

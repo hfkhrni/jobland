@@ -2,7 +2,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { usePaginatedQuery, useQuery } from "convex/react";
 import { Image } from "expo-image";
-import { Link, Stack } from "expo-router";
+import { Link } from "expo-router";
 import { useMemo, useState } from "react";
 import { FlatList, Pressable, ScrollView, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -107,7 +107,7 @@ export default function JobsScreen() {
         .filter(Boolean);
       return ["All", ...industryNames.sort()];
     } catch (error) {
-      console.error("Error processing industries:", error);
+      // console.error("Error processing industries:", error);
       return ["All"];
     }
   }, [industriesData]);
@@ -122,7 +122,7 @@ export default function JobsScreen() {
         }
       });
     } catch (error) {
-      console.error("Error creating industry map:", error);
+      // console.error("Error creating industry map:", error);
     }
     return map;
   }, [industriesData]);
@@ -149,7 +149,7 @@ export default function JobsScreen() {
         return matchesSearch && matchesIndustry;
       });
     } catch (error) {
-      console.error("Error filtering jobs:", error);
+      // console.error("Error filtering jobs:", error);
       return [];
     }
   }, [allJobs, searchQuery, selectedIndustry, industryMap]);
@@ -169,140 +169,129 @@ export default function JobsScreen() {
   };
 
   // Debug logs
-  console.log("Debug info:");
-  console.log("Selected industry:", selectedIndustry);
-  console.log("Sample job company:", allJobs[0]?.company);
-  console.log("All jobs count:", allJobs.length);
-  console.log("Filtered jobs count:", filteredJobs.length);
+  // console.log("Debug info:");
+  // console.log("Selected industry:", selectedIndustry);
+  // console.log("Sample job company:", allJobs[0]?.company);
+  // console.log("All jobs count:", allJobs.length);
+  // console.log("Filtered jobs count:", filteredJobs.length);
 
   // Let's also see what industry names we're trying to match
   if (selectedIndustry !== "All") {
-    console.log("Looking for jobs in industry:", selectedIndustry);
+    // console.log("Looking for jobs in industry:", selectedIndustry);
     allJobs.forEach((job, index) => {
       const jobIndustryName = job.company?.industryId
         ? industryMap.get(job.company.industryId)
         : null;
-      console.log(
-        `Job ${index}: ${job.title} - Industry: ${jobIndustryName} - Matches: ${jobIndustryName === selectedIndustry}`
-      );
+      // console.log(
+      //   `Job ${index}: ${job.title} - Industry: ${jobIndustryName} - Matches: ${jobIndustryName === selectedIndustry}`
+      // );
     });
   }
 
   return (
-    <>
-      <Stack.Screen
-        options={{
-          title: "All Jobs",
-          headerLargeTitle: true,
-        }}
-      />
-      <SafeAreaView
-        className="flex-1 bg-gray-50"
-        //  edges={{ top: "off" }}
-      >
-        <View className="px-4 pt-4 pb-2 bg-white border-b border-gray-200">
-          {/* Search Bar */}
-          <View className="flex-row items-center bg-gray-100 rounded-xl px-4 py-3 mb-4">
-            <Ionicons name="search" size={20} color="#6B7280" />
-            <TextInput
-              className="flex-1 ml-3 text-base text-gray-900"
-              placeholder="Search jobs, companies, or locations..."
-              placeholderTextColor="#6B7280"
-              value={searchQuery}
-              onChangeText={setSearchQuery}
-            />
-            {searchQuery.length > 0 && (
-              <Pressable onPress={() => setSearchQuery("")}>
-                <Ionicons name="close-circle" size={20} color="#6B7280" />
-              </Pressable>
-            )}
-          </View>
+    <SafeAreaView
+      className="flex-1 bg-gray-50"
+      //  edges={{ top: "off" }}
+    >
+      <View className="px-4 pt-4 pb-2 bg-white border-b border-gray-200">
+        {/* Search Bar */}
+        <View className="flex-row items-center bg-gray-100 rounded-xl px-4 py-3 mb-4">
+          <Ionicons name="search" size={20} color="#6B7280" />
+          <TextInput
+            className="flex-1 ml-3 text-base text-gray-900"
+            placeholder="Search jobs, companies, or locations..."
+            placeholderTextColor="#6B7280"
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+          />
+          {searchQuery.length > 0 && (
+            <Pressable onPress={() => setSearchQuery("")}>
+              <Ionicons name="close-circle" size={20} color="#6B7280" />
+            </Pressable>
+          )}
+        </View>
 
-          {/* Industry Filter Badges */}
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            className="mb-2"
-            contentContainerStyle={{ paddingHorizontal: 24 }}
-          >
-            <View className="flex-row gap-2">
-              {industries.map((industry) => (
-                <Button
-                  key={industry}
-                  onPress={() => {
-                    console.log("Pressed industry:", industry);
-                    setSelectedIndustry(industry);
-                  }}
+        {/* Industry Filter Badges */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          className="mb-2"
+          contentContainerStyle={{ paddingHorizontal: 24 }}
+        >
+          <View className="flex-row gap-2">
+            {industries.map((industry) => (
+              <Button
+                key={industry}
+                onPress={() => {
+                  // console.log("Pressed industry:", industry);
+                  setSelectedIndustry(industry);
+                }}
+                className={
+                  selectedIndustry === industry ? "bg-blue-600" : "bg-gray-200"
+                }
+                size="sm"
+              >
+                <Text
                   className={
                     selectedIndustry === industry
-                      ? "bg-blue-600"
-                      : "bg-gray-200"
+                      ? "text-white"
+                      : "text-gray-700"
                   }
-                  size="sm"
                 >
-                  <Text
-                    className={
-                      selectedIndustry === industry
-                        ? "text-white"
-                        : "text-gray-700"
-                    }
-                  >
-                    {industry}
-                  </Text>
-                </Button>
-              ))}
-            </View>
-          </ScrollView>
-        </View>
+                  {industry}
+                </Text>
+              </Button>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
 
-        {/* Results Header */}
-        <View className="px-6 py-3 bg-white">
-          <Text className="text-gray-600">
-            {filteredJobs.length} job{filteredJobs.length !== 1 ? "s" : ""}{" "}
-            found
-            {selectedIndustry !== "All" && ` in ${selectedIndustry}`}
-            {searchQuery && ` for "${searchQuery}"`}
-          </Text>
-        </View>
+      {/* Results Header */}
+      <View className="px-6 py-3 bg-white">
+        <Text className="text-gray-600">
+          {filteredJobs.length} job{filteredJobs.length !== 1 ? "s" : ""} found
+          {selectedIndustry !== "All" && ` in ${selectedIndustry}`}
+          {searchQuery && ` for "${searchQuery}"`}
+        </Text>
+      </View>
 
-        {/* Jobs List */}
-        <FlatList
-          data={filteredJobs}
-          renderItem={({ item }) => (
-            <JobCard job={item} formatSalary={formatSalary} />
-          )}
-          keyExtractor={(item, index) => item.id || index.toString()}
-          contentContainerStyle={{
-            padding: 12,
-            paddingBottom: 100,
-          }}
-          showsVerticalScrollIndicator={false}
-          onEndReached={handleLoadMore}
-          onEndReachedThreshold={0.5}
-          ListFooterComponent={
-            status === "LoadingMore" ? (
-              <View className="py-4 items-center">
-                <Text className="text-gray-500">Loading more jobs...</Text>
-              </View>
-            ) : null
-          }
-          ListEmptyComponent={
-            <View className="items-center justify-center py-12">
-              <Ionicons name="briefcase-outline" size={64} color="#D1D5DB" />
-              <Text className="text-gray-500 text-lg font-medium mt-4 mb-2">
-                {status === "LoadingFirstPage"
-                  ? "Loading jobs..."
-                  : "No jobs found"}
-              </Text>
-              <Text className="text-gray-400 text-center">
-                {status === "LoadingFirstPage"
-                  ? "Please wait while we fetch the latest jobs"
-                  : "Try adjusting your search or filter criteria"}
-              </Text>
+      {/* Jobs List */}
+      <FlatList
+        data={filteredJobs}
+        renderItem={({ item }) => (
+          <JobCard job={item} formatSalary={formatSalary} />
+        )}
+        keyExtractor={(item, index) => item.id || index.toString()}
+        contentContainerStyle={{
+          padding: 12,
+          paddingBottom: 100,
+        }}
+        showsVerticalScrollIndicator={false}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={
+          status === "LoadingMore" ? (
+            <View className="py-4 items-center">
+              <Text className="text-gray-500">Loading more jobs...</Text>
             </View>
-          }
-        />
-      </SafeAreaView>
-    </>
+          ) : null
+        }
+        ListEmptyComponent={
+          <View className="items-center justify-center py-12">
+            <Ionicons name="briefcase-outline" size={64} color="#D1D5DB" />
+            <Text className="text-gray-500 text-lg font-medium mt-4 mb-2">
+              {status === "LoadingFirstPage"
+                ? "Loading jobs..."
+                : "No jobs found"}
+            </Text>
+            <Text className="text-gray-400 text-center">
+              {status === "LoadingFirstPage"
+                ? "Please wait while we fetch the latest jobs"
+                : "Try adjusting your search or filter criteria"}
+            </Text>
+          </View>
+        }
+      />
+    </SafeAreaView>
   );
 }
