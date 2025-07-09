@@ -110,7 +110,6 @@ export default function ComplaintForm() {
   };
 
   // File upload helper function
-  // In your form component, update the uploadFileToConvex function
   const uploadFileToConvex = async (
     file: UploadedFile
   ): Promise<Id<"_storage">> => {
@@ -199,7 +198,6 @@ export default function ComplaintForm() {
     }
   };
 
-  // Upload files in background
   // Upload files in background
   const uploadFilesInBackground = async (files: UploadedFile[]) => {
     for (const file of files) {

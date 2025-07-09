@@ -21,7 +21,7 @@ export default function HomeScreen() {
     loadMore,
   } = usePaginatedQuery(
     api.jobs.getJobs,
-    { paginationOpts: { limit: 5 } }, // Show fewer jobs on home screen
+    { paginationOpts: { limit: 5 } },
     { initialNumItems: 5 }
   );
 
@@ -56,7 +56,7 @@ export default function HomeScreen() {
         headerBackground={require("~/assets/images/image.png")}
         headerOverlay={
           <View style={{ padding: 16 }}>
-            <Button onPress={() => router.push("/(complaint)/")}>
+            <Button onPress={() => router.push("/(complaint)/complaint")}>
               <Text>Submit a complaint</Text>
             </Button>
           </View>
@@ -83,14 +83,6 @@ export default function HomeScreen() {
               <JobCard job={job} key={index} formatSalary={formatSalary} />
             ))}
           </View>
-          {/* 
-          <Pressable className="p-2 -mr-2 -mt-2">
-                    <Ionicons
-                      name="bookmark-outline"
-                      size={20}
-                      color="#6B7280"
-                    />
-                  </Pressable> */}
           {/* Load More Button */}
           {status === "CanLoadMore" && (
             <View className="mt-6 mb-4">

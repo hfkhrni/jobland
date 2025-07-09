@@ -9,18 +9,18 @@ import { ConvexReactClient, useConvexAuth } from "convex/react";
 import { Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator, Platform } from "react-native";
+import { ActivityIndicator, Platform, View } from "react-native";
 import "react-native-gesture-handler";
 import "react-native-reanimated";
-// import { useColorScheme } from "~/hooks/useColorScheme";
 import "../global.css";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NAV_THEME } from "~/lib/constants";
 import { useColorScheme } from "~/lib/useColorScheme";
 
-import { View } from "react-native";
 import Toast from "react-native-toast-message";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -36,35 +36,84 @@ export {
   ErrorBoundary,
 } from "expo-router";
 
-export default function RootLayout() {
-  // const { isAuthenticated, isLoading } = useConvexAuth();
+const createRobustStorage = () => {
+  const storage = {
+    getItem: async (key: string) => {
+      try {
+        if (Platform.OS !== "web") {
+          const secureValue = await SecureStore.getItemAsync(key);
+          if (secureValue) return secureValue;
+        }
 
-  // const token = useAuthToken();
+        const asyncValue = await AsyncStorage.getItem(key);
+        return asyncValue;
+      } catch (error) {
+        console.warn(`Storage getItem error for key ${key}:`, error);
+        return null;
+      }
+    },
 
-  const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
-    unsavedChangesWarning: false,
-  });
+    setItem: async (key: string, value: string) => {
+      try {
+        const promises = [];
 
-  const secureStorage = {
-    getItem: SecureStore.getItemAsync,
-    setItem: SecureStore.setItemAsync,
-    removeItem: SecureStore.deleteItemAsync,
+        if (Platform.OS !== "web") {
+          promises.push(
+            SecureStore.setItemAsync(key, value).catch((err) =>
+              console.warn("SecureStore setItem failed:", err)
+            )
+          );
+        }
+
+        promises.push(
+          AsyncStorage.setItem(key, value).catch((err) =>
+            console.warn("AsyncStorage setItem failed:", err)
+          )
+        );
+
+        await Promise.allSettled(promises);
+      } catch (error) {
+        console.warn(`Storage setItem error for key ${key}:`, error);
+      }
+    },
+
+    removeItem: async (key: string) => {
+      try {
+        const promises = [];
+
+        if (Platform.OS !== "web") {
+          promises.push(
+            SecureStore.deleteItemAsync(key).catch((err) =>
+              console.warn("SecureStore removeItem failed:", err)
+            )
+          );
+        }
+
+        promises.push(
+          AsyncStorage.removeItem(key).catch((err) =>
+            console.warn("AsyncStorage removeItem failed:", err)
+          )
+        );
+
+        await Promise.allSettled(promises);
+      } catch (error) {
+        console.warn(`Storage removeItem error for key ${key}:`, error);
+      }
+    },
   };
 
+  return storage;
+};
+
+const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
+  unsavedChangesWarning: false,
+});
+
+const robustStorage = createRobustStorage();
+
+export default function RootLayout() {
   return (
-    <ConvexAuthProvider
-      client={convex}
-      storage={
-        Platform.OS === "android" || Platform.OS === "ios"
-          ? secureStorage
-          : undefined
-      }
-    >
-      {/* <View className="flex-1 items-center justify-center bg-white">
-          <Text className="text-xl font-bold text-red-500">
-            Welcome to Nativewind!
-          </Text>
-        </View> */}
+    <ConvexAuthProvider client={convex} storage={robustStorage}>
       <RootNavigator />
       <Toast />
     </ConvexAuthProvider>
@@ -84,22 +133,12 @@ function RootNavigator() {
   const { colorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = useState(false);
 
-  // const [loaded] = useFonts({
-  //   SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-  // });
-
-  // if (!loaded) {
-  //   // Async font loading only occurs in development.
-  //   return null;
-  // }
-
   useIsomorphicLayoutEffect(() => {
     if (hasMounted.current) {
       return;
     }
 
     if (Platform.OS === "web") {
-      // Adds the background color to the html element to prevent white background on overscroll.
       document.documentElement.classList.add("bg-background");
     }
     setIsColorSchemeLoaded(true);
@@ -125,7 +164,6 @@ function RootNavigator() {
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
       <Stack>
-        {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
         <Stack.Protected guard={isAuthenticated}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack.Protected>

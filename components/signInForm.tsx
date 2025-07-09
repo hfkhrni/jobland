@@ -17,7 +17,7 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Text } from "~/components/ui/text";
-import { cn } from "~/lib/utils"; // If you use the cn utility
+import { cn } from "~/lib/utils";
 
 // Zod schema for sign in
 const SignInSchema = z.object({
@@ -80,7 +80,7 @@ export function SignInForm() {
         password: form.password,
         flow: "signIn",
       });
-      router.replace("/(tabs)/");
+      // router.replace("/(tabs)/");
       Toast.show({
         type: "success",
         text1: "Signed in successfully!",
